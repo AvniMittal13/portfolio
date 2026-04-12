@@ -3,247 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avni Mittal - Academic Portfolio</title>
+    <title>Avni Mittal</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">Avni Mittal</div>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#publications" class="nav-link">Publications</a></li>
-                <li><a href="#cv" class="nav-link">CV</a></li>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a class="nav-brand" href="#">Avni Mittal</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#news">News</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="Avni_CV_PhD_curr.pdf">CV</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <!-- ===== Header / Bio ===== -->
+    <div id="about" class="header-section">
+        <div class="header-text">
+            <h1>Avni Mittal</h1>
+
+            <p>
+                I am a Data Scientist (AI Research) at <a href="https://www.microsoft.com/en-us/security">Microsoft Security Platform</a>.
+                My research is driven by the goal of building interpretable and reliable AI systems that enable efficient and trustworthy reasoning in high-stakes settings.
+            </p>
+
+            <p>
+                I am particularly interested in understanding how reasoning emerges inside models and how this understanding can be used to design systems whose behavior is robust, faithful, and aligned. My work focuses on two complementary directions:
+            </p>
+            <ul>
+                <li><strong>Mechanistic transparency</strong>: studying internal representations and architectural components to reveal latent structure, diagnose reasoning failures, and develop principled methods for steering model behavior.</li>
+                <li><strong>Agentic reliability</strong>: designing evaluation frameworks for reasoning faithfulness and exploring verifiable alignment strategies that enforce safety in agent-based and multi-agent systems.</li>
             </ul>
+
+            <p>
+                Previously, I worked on <strong>Neural Cellular Automata</strong>–based architectures for medical image segmentation and multimodal engagement analysis. I graduated with a B.Tech in CSE (Honours) from <a href="https://www.iitmandi.ac.in/">IIT Mandi</a> (Department Rank 2) and spent a semester at <a href="https://www.tu-darmstadt.de/">TU Darmstadt</a>.
+            </p>
+
+            <p class="links-row">
+                <a href="mailto:avni.mittal2002@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a> &nbsp;/&nbsp;
+                <a href="Avni_CV_PhD_curr.pdf" target="_blank"><i class="fas fa-file-alt"></i> CV</a> &nbsp;/&nbsp;
+                <a href="https://www.linkedin.com/in/avni-mittal-5a0b3b198/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> &nbsp;/&nbsp;
+                <a href="https://github.com/AvniMittal13" target="_blank"><i class="fab fa-github"></i> GitHub</a> &nbsp;/&nbsp;
+                <a href="https://scholar.google.com/citations?user=itURCtMAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+            </p>
         </div>
-    </nav>
+        <div class="header-image">
+            <img src="cropped-picc.jpeg" alt="Avni Mittal">
+        </div>
+    </div>
 
-    <!-- Main Content -->
-    <main>
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <div class="about-content">
-                    <div class="profile-image">
-                        <img src="cropped-picc.jpeg" alt="Avni Mittal" class="profile-img">
-                    </div>
-                    <div class="about-text">
-                        <h1 class="section-title">Avni Mittal</h1>
-                        <p class="bio">
-                            <!-- <p>
-    I am a Data Scientist (AI Research) at Microsoft Security Platform, developing multi-agent and LLM-based systems 
-    for enterprise security analysis and compliance automation. My research centers on building AI systems that are 
-    both powerful and trustworthy, systems where reasoning is transparent, behavior is predictable under distribution 
-    shifts, and decisions align with human values. I am particularly focused on <strong>multi-agent orchestration, 
-    AI safety and alignment, mechanistic interpretability, and reliable reasoning in large language models</strong>.
-</p>
-<p>Broadly, my research focuses on:</p>
-<ul style="margin-left: 2.5rem;">
-    <li>
-        <strong>Uncovering mechanistic transparency</strong> by investigating internal representations and 
-        architectural components to understand latent structure, explain reasoning failures, and steer model behavior.
-    </li>
-    <li>
-        <strong>Ensuring agentic reliability</strong> by designing frameworks to evaluate reasoning faithfulness 
-        and enforcing safety through verifiable alignment strategies.
-    </li>
-</ul>
-<p>
-    In the past, I have worked extensively with <strong>Neural Cellular Automata–based architectures</strong>, 
-    developing efficient frameworks for medical image segmentation and multimodal engagement analysis in educational settings. 
-    I have also collaborated on building scalable multi-agent systems for enterprise security workflows, exploring how 
-    coordinated agents can reason about complex problems while maintaining transparency and alignment. Through these projects, 
-    I have developed a deep appreciation for both the theoretical foundations and practical challenges of building reliable AI systems.
-</p> -->
+    <!-- ===== News ===== -->
+    <div id="news" class="section-block">
+        <h2>News</h2>
+        <ul class="news-list">
+            <li><span class="news-date">[Feb '26]</span> <span class="news-tag">Talk</span> Took tool lectures on <em>"LLM Agents"</em> for the Deep Learning course at <a href="https://www.iith.ac.in/">IIT Hyderabad</a>.</li>
+            <li><span class="news-date">[Sept '25]</span> <span class="news-tag">Talk</span> Invited talk on <em>"How Agentic Systems Can Be Developed for Organizational Information Processing Using RAG"</em> at <a href="https://www.iith.ac.in/">IIT Hyderabad</a>, Digital Transformation series.</li>
+            <li><span class="news-date">[Sept '25]</span> <span class="news-tag">Research</span> Started supervised research at <a href="https://www.sparai.org/">SPAR AI</a> (Safety &amp; Alignment Research) — studying faithfulness and deceptive reasoning in Mixture-of-Experts models.</li>
+            <li><span class="news-date">[Jul '25]</span> <span class="news-tag">Paper</span> <a href="https://aclanthology.org/2025.ijcnlp-demo.6/">LITMUS++</a> accepted at <strong>IJCNLP-AACL 2025</strong> (System Demonstration Track). Patent filed.</li>
+            <li><span class="news-date">[2025]</span> <span class="news-tag">Award</span> Received the <strong>AI Innovation Award</strong> at Microsoft Security Platform for the Security Analysis Agent.</li>
+            <li><span class="news-date">[2025]</span> <span class="news-tag">Paper</span> <a href="https://aclanthology.org/2025.sicon-1.5/">PROTECT</a> accepted at <strong>SICon 2025</strong> (ACL Workshop).</li>
+            <li><span class="news-date">[2025]</span> <span class="news-tag">Paper</span> <a href="https://www.computer.org/csdl/proceedings-article/cbms/2025/261000a035/284Khy3rT3i">MedSegDiffNCA</a> accepted at <strong>IEEE CBMS 2025</strong>.</li>
+            <li><span class="news-date">[2025]</span> <span class="news-tag">Patent</span> Filed patent on <em>"Multi-Agent Predictive Systems for Cross-Domain Model Performance Assessment"</em> with Dr. Sandipan Dandapat and Dr. Monojit Choudhury.</li>
+            <li><span class="news-date">[2025]</span> <span class="news-tag">Patent</span> Filed patent on <em>"A System of Simultaneous Optimization of Multiple Agents"</em> (Multi-Agent Prompt Tuner).</li>
+            <li><span class="news-date">[Feb '25]</span> <span class="news-tag">Teaching</span> Research group lead for <strong>CS672 Advanced Deep Learning</strong> at IIT Mandi, guiding UG students on GNNs and NCA.</li>
+            <li><span class="news-date">[Jan '24]</span> <span class="news-tag">Industry</span> Joined <a href="https://www.microsoft.com/en-us/security">Microsoft</a> as Data Scientist (AI Research) working on multi-agent systems and AI alignment.</li>
+            <li><span class="news-date">[Sep '24]</span> <span class="news-tag">Paper</span> <a href="https://ieeexplore.ieee.org/abstract/document/10707841">ECLIPSE</a> accepted at <strong>ECAI 2024</strong>.</li>
+            <li><span class="news-date">[Sep '24]</span> <span class="news-tag">Paper</span> <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240551">Exceda</a> accepted at <strong>IEEE MIPR 2024</strong>.</li>
+            <li><span class="news-date">[May '24]</span> Graduated from <strong>IIT Mandi</strong> with B.Tech CSE (Honours), CGPA 8.93/10, Department Rank 2.</li>
+            <li><span class="news-date">[2024]</span> <span class="news-tag">Award</span> <strong>Academic Excellence Award (CSE)</strong>, IIT Mandi — Highest SGPA in 5th and 6th semesters.</li>
+            <li><span class="news-date">[2023]</span> <span class="news-tag">Award</span> <strong>Top 5 Rank</strong> at Inter-IIT Tech Meet representing IIT Mandi.</li>
+            <li><span class="news-date">[Oct '22]</span> Semester exchange at <a href="https://www.tu-darmstadt.de/">TU Darmstadt</a>, Germany — CGPA 9.36/10.</li>
+        </ul>
+    </div>
 
-<p>
-My research is driven by the goal of building interpretable and reliable AI systems that enable efficient and trustworthy reasoning in high-stakes settings. Although large language models have demonstrated remarkable performance, their internal mechanisms remain poorly understood, leaving them vulnerable to hallucinations, brittle reasoning, and unexpected failures.
-</p>
+    <!-- ===== Publications ===== -->
+    <div id="publications" class="section-block">
+        <h2>Publications</h2>
 
-<p>
-I am particularly interested in understanding how reasoning emerges inside models and how this understanding can be used to design systems whose behavior is robust, faithful, and aligned. Concretely, my work focuses on two complementary directions:
-</p>
-
-<ul style="margin-left: 2.5rem;">
-    <li>
-        <strong>Mechanistic transparency</strong>: studying internal representations and architectural components to reveal latent structure, diagnose reasoning failures, and develop principled methods for steering model behavior.
-    </li>
-    <li>
-        <strong>Agentic reliability</strong>: designing evaluation frameworks for reasoning faithfulness and exploring verifiable alignment strategies that enforce safety in agent-based and multi-agent systems.
-    </li>
-</ul>
-
-<p>
-My interest in these questions has been shaped by diverse research experiences spanning inherently interpretable Neural Cellular Automata and the orchestration of large language model based agents. These experiences have highlighted that reliability must be engineered both at the level of internal representations and at the level of system design.
-</p>
-
-<p>
-More broadly, I am motivated by the challenge of bridging high-level agentic behavior with low-level mechanistic understanding of how models represent and manipulate knowledge. In the long term, I aim to pursue research at the intersection of interpretability, reinforcement learning, and trustworthy agentic systems, addressing emerging challenges such as misalignment, deceptive reasoning, and failure modes that arise in complex multi-agent environments.
-</p>
-
-
-                            <!-- <ul> -->
-    <!-- <li> -->
-        <!-- I am particularly interested in understanding how
-        <strong>internal latent representations</strong> and
-        <strong>intermediate reasoning pathways</strong> evolve and adapt to
-        produce model outputs—especially under input perturbations and across
-        architectures—so that we can diagnose, correct, and precisely guide
-        model behaviour. -->
-    <!-- </li> -->
-     <!-- <ul> -->
-    <!-- <li> -->
-        <!-- Concretely, my research work aims to:
-        <ul style="margin-left: 2.5rem;">
-            <li>
-                <strong>Quantitatively measure faithful reasoning</strong> and
-                explore how such faithfulness metrics can be integrated into
-                training objectives to mitigate reward hacking.
-            </li>
-            <li>
-                <strong>Embed human values directly into a model’s reasoning
-                mechanisms</strong>, so that critical safety behaviours are
-                “hard-coded” into the reasoning process rather than added as
-                fragile patches.
-            </li>
-        </ul> -->
-    <!-- </li> -->
-<!-- </ul> -->
-
-                        </p>
-                        <div class="current-role">
-                            <span class="role-badge">Currently: Data Scientist (AI Research), Microsoft Security Platform</span>
-                        </div>
-                        <div class="contact-info">
-                            <p><strong>Email:</strong> avni.mittal2002@gmail.com</p>
-                            <p><strong>Education:</strong> B.Tech in Computer Science and Engineering (Honors), IIT Mandi</p>
-                            <p><strong>Research Interests:</strong> Multi-agent systems, trustworthy and reliable AI, AI alignment, interpretability, and reasoning in LLMs</p>
-                            <div class="social-links">
-                                <a href="https://scholar.google.com/citations?user=itURCtMAAAAJ&hl=en" target="_blank" class="social-link">Google Scholar</a>
-                                <a href="https://linkedin.com/in/avni-mittal-5a0b3b198/" target="_blank" class="social-link">LinkedIn</a>
-                                <a href="https://github.com/AvniMittal13" target="_blank" class="social-link">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- C.1 -->
+        <div class="pub-entry">
+            <div class="pub-content">
+                <a class="pub-title" href="https://aclanthology.org/2025.ijcnlp-demo.6/">LITMUS++: An Agentic System for Predictive Analysis of Low-Resource Languages Across Tasks and Models</a>
+                <p class="pub-authors"><strong>Avni Mittal</strong>, Shanu Kumar, Sandipan Dandapat, Monojit Choudhary</p>
+                <p class="pub-venue">IJCNLP–AACL 2025, System Demonstration Track</p>
+                <p class="pub-links-row">
+                    <a href="https://aclanthology.org/2025.ijcnlp-demo.6/">paper</a>
+                </p>
             </div>
-        </section>
+        </div>
 
-        <!-- Publications Section -->
-        <section id="publications" class="section">
-            <div class="container">
-                <h2 class="section-title">Publications</h2>
-
-                <div class="publications-list">
-                    <!-- Conference & Workshop Papers -->
-                    <h3 class="pub-section-heading">Conference &amp; Workshop Papers</h3>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">LITMUS++: An Agentic System for Predictive Analysis of Low-Resource Languages Across Tasks and Models</h3>
-                        <p class="pub-authors"><strong>Mittal, A.</strong>, Kumar, S., Dandapat, S., Choudhury, M.</p>
-                        <p class="pub-venue">IJCNLP–AACL 2025, System Demonstration Track</p>
-                        <div class="pub-links">
-                            <a href="https://aclanthology.org/2025.ijcnlp-demo.6/" target="_blank" class="pub-link">Link</a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">PROTECT: Policy-Related Organizational Value Taxonomy for Ethical Compliance and Trust</h3>
-                        <p class="pub-authors"><strong>Mittal, A.</strong>, Nagaralu, S. H., Dandapat, S.</p>
-                        <p class="pub-venue">SICon 2025 (ACL Workshop)</p>
-                        <div class="pub-links">
-                            <a href="https://aclanthology.org/2025.sicon-1.5/" target="_blank" class="pub-link">Link</a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">MedSegDiffNCA: Diffusion Models with Neural Cellular Automata for Skin Lesion Segmentation</h3>
-                        <p class="pub-authors"><strong>Mittal, A.</strong>, Kalkhof, J., Mukhopadhyay, A., Bhavsar, A.</p>
-                        <p class="pub-venue">IEEE CBMS 2025</p>
-                        <div class="pub-links">
-                            <a href="https://www.computer.org/csdl/proceedings-article/cbms/2025/261000a035/284Khy3rT3i" target="_blank" class="pub-link">Link</a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">Unveiling Learner Dynamics: The ECLIPSE Dataset and NeuralGaze Framework for Prolonged Engagement Assessment in Online Learning</h3>
-                        <p class="pub-authors">Anand, A., <strong>Mittal, A.</strong>, Dhawan, L., Ramesh, M., Krishnamurthy, J., Lal, N., Jaiswal, R., Bhuyan, P., Himani, Verma, A., Shah, R. R., Zimmermann, R., Satoh, S.</p>
-                        <p class="pub-venue">ECAI 2024</p>
-                        <div class="pub-links">
-                            <a href="https://ieeexplore.ieee.org/abstract/document/10707841" target="_blank" class="pub-link">Link</a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">Exceda: Unlocking Attention Paradigms in Extended Duration E-Classrooms with Attention Mechanism</h3>
-                        <p class="pub-authors">Anand, A., <strong>Mittal, A.</strong>, Dhawan, L., Krishnamurthy, J., Ramesh, M., Lal, N., Astha Verma, Pijush Bhuyan, Himani, Shah, R. R., Zimmermann, R., Satoh, S.</p>
-                        <p class="pub-venue">IEEE MIPR 2024</p>
-                        <div class="pub-links">
-                            <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240551" target="_blank" class="pub-link">Link</a>
-                        </div>
-                    </div>
-
-                    <!-- Patents -->
-                    <h3 class="pub-section-heading">Patents</h3>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">Multi-Agent Predictive Systems for Cross-Domain Model Performance Assessment</h3>
-                        <p class="pub-authors"><strong>Mittal, A.</strong>, Kumar, S., Dandapat, S., Choudhury, M.</p>
-                        <p class="pub-venue">Patent filed</p>
-                        <div class="pub-links">
-                            <span class="pub-status patent">Patent Filed</span>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">A System of Simultaneous Optimization of Multiple Agents</h3>
-                        <p class="pub-authors">Prasad, G., <strong>Mittal, A.</strong>, Sachdev, Y.</p>
-                        <p class="pub-venue">Patent filed</p>
-                        <div class="pub-links">
-                            <span class="pub-status patent">Patent Filed</span>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <h3 class="pub-title">A System to Navigate Product Complexities through Automatic Visual Guide Generation</h3>
-                        <p class="pub-authors">Prasad, G., <strong>Mittal, A.</strong>, Sachdev, Y.</p>
-                        <p class="pub-venue">Patent being filed</p>
-                        <div class="pub-links">
-                            <span class="pub-status patent">Patent Being Filed</span>
-                        </div>
-                    </div>
-                </div>
+        <!-- C.2 -->
+        <div class="pub-entry">
+            <div class="pub-content">
+                <a class="pub-title" href="https://aclanthology.org/2025.sicon-1.5/">PROTECT: Policy-Related Organizational Value Taxonomy for Ethical Compliance and Trust</a>
+                <p class="pub-authors"><strong>Avni Mittal</strong>, Sree Hari Nagaralu, Sandipan Dandapat</p>
+                <p class="pub-venue">SICon 2025 (ACL Workshop)</p>
+                <p class="pub-links-row">
+                    <a href="https://aclanthology.org/2025.sicon-1.5/">paper</a>
+                </p>
             </div>
-        </section>
+        </div>
 
-        <!-- CV Section -->
-        <section id="cv" class="section">
-            <div class="container">
-                <h2 class="section-title">Curriculum Vitae</h2>
-                <div class="cv-content">
-                    <p class="cv-description">
-                        Download my complete CV to view my full academic background, research experience,
-                        publications, patents, and professional achievements.
-                    </p>
-                    <div class="cv-download">
-                        <a href="Avni_CV_PhD_curr.pdf" class="cv-button" target="_blank">
-                            <span class="cv-icon">📄</span>
-                            View CV (PDF)
-                        </a>
-                        <p class="cv-note">Last updated: 2025 (current version)</p>
-                    </div>
-                </div>
+        <!-- C.3 -->
+        <div class="pub-entry">
+            <div class="pub-content">
+                <a class="pub-title" href="https://www.computer.org/csdl/proceedings-article/cbms/2025/261000a035/284Khy3rT3i">MedSegDiffNCA: Diffusion Models with Neural Cellular Automata for Skin Lesion Segmentation</a>
+                <p class="pub-authors"><strong>Avni Mittal</strong>, John Kalkhof, Anirban Mukhopadhyay, Arnav Bhavsar</p>
+                <p class="pub-venue">IEEE CBMS 2025</p>
+                <p class="pub-links-row">
+                    <a href="https://www.computer.org/csdl/proceedings-article/cbms/2025/261000a035/284Khy3rT3i">paper</a>
+                </p>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <!-- Footer -->
+        <!-- C.4 -->
+        <div class="pub-entry">
+            <div class="pub-content">
+                <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/10707841">Unveiling Learner Dynamics: The ECLIPSE Dataset and NeuralGaze Framework for Prolonged Engagement Assessment in Online Learning</a>
+                <p class="pub-authors">Avinash Anand, <strong>Avni Mittal</strong>, Laavanaya Dhawan, Mahisha Ramesh, Juhi Krishnamurthy, Naman Lal, Raj Jaiswal, Pijush Bhuyan, Himani, Astha Verma, Rajiv Ratn Shah, Roger Zimmermann, Shin'ichi Satoh</p>
+                <p class="pub-venue">ECAI 2024</p>
+                <p class="pub-links-row">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10707841">paper</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- C.5 -->
+        <div class="pub-entry">
+            <div class="pub-content">
+                <a class="pub-title" href="https://ebooks.iospress.nl/doi/10.3233/FAIA240551">Exceda: Unlocking Attention Paradigms in Extended Duration E-Classrooms with Attention Mechanism</a>
+                <p class="pub-authors">Avinash Anand, <strong>Avni Mittal</strong>, Laavanaya Dhawan, Juhi Krishnamurthy, Mahisha Ramesh, Naman Lal, Astha Verma, Pijush Bhuyan, Himani, Rajiv Ratn Shah, Roger Zimmermann, Shin'ichi Satoh</p>
+                <p class="pub-venue">IEEE MIPR 2024</p>
+                <p class="pub-links-row">
+                    <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240551">paper</a>
+                </p>
+            </div>
+        </div>
+
+        <h3 class="subsection-heading">Patents</h3>
+
+        <div class="pub-entry">
+            <div class="pub-content">
+                <span class="pub-title-nolink">Multi-Agent Predictive Systems for Cross-Domain Model Performance Assessment</span>
+                <p class="pub-authors"><strong>Avni Mittal</strong>, Shanu Kumar, Sandipan Dandapat, Monojit Choudhary</p>
+                <p class="pub-venue">Patent filed</p>
+            </div>
+        </div>
+
+        <div class="pub-entry">
+            <div class="pub-content">
+                <span class="pub-title-nolink">A System of Simultaneous Optimization of Multiple Agents</span>
+                <p class="pub-authors">Gautam Prasad, <strong>Avni Mittal</strong>, Yugal Sachdev</p>
+                <p class="pub-venue">Patent filed</p>
+            </div>
+        </div>
+
+        <div class="pub-entry">
+            <div class="pub-content">
+                <span class="pub-title-nolink">A System to Navigate Product Complexities through Automatic Visual Guide Generation</span>
+                <p class="pub-authors">Gautam Prasad, <strong>Avni Mittal</strong>, Yugal Sachdev</p>
+                <p class="pub-venue">Patent being filed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Selected Experience ===== -->
+    <div id="experience" class="section-block">
+        <h2>Selected Experience</h2>
+
+        <div class="exp-entry">
+            <div class="exp-content">
+                <p class="exp-title">Data Scientist (AI Research), <a href="https://www.microsoft.com/en-us/security">Microsoft</a></p>
+                <p class="exp-detail">Multi-agent systems, AI alignment, compliance automation. Built the Security Analysis Agent (89% precision, AI Innovation Award). Developed Multi-Agent Prompt Tuner and Swarm Pinboard. Improved RAG performance from 60% to 91% for Security Copilot Skill deployed to 2,000+ enterprise tenants.</p>
+                <p class="exp-date">Jan 2024 – Present</p>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-content">
+                <p class="exp-title">Supervised Research, <a href="https://www.sparai.org/">SPAR AI</a> (Safety &amp; Alignment Research)</p>
+                <p class="exp-detail">Studying faithfulness and deceptive reasoning in MoE models. Developed perturbation-based benchmarks from PRM800K to evaluate Chain-of-Thought faithfulness.</p>
+                <p class="exp-date">Sept 2025 – Present</p>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-content">
+                <p class="exp-title">Research with <a href="https://scholar.google.com/citations?user=YMCYVksAAAAJ">Dr. Sandipan Dandapat</a> &amp; <a href="https://scholar.google.com/citations?user=WR1ImCMAAAAJ">Dr. Monojit Choudhury</a></p>
+                <p class="exp-detail">Multi-agent system for predictive analysis of low-resource languages. Work published at IJCNLP-AACL 2025; patent filed.</p>
+                <p class="exp-date">Jul 2025 – Present</p>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-content">
+                <p class="exp-title">Research Intern, <a href="https://midas.iiitd.ac.in/">MIDAS Lab</a>, IIIT Delhi</p>
+                <p class="exp-detail">Supervisor: Dr. Rajiv Ratn Shah. Multimodal engagement prediction using NCA. Published at ECAI 2024 and IEEE MIPR 2024.</p>
+                <p class="exp-date">Sept 2023 – Aug 2024</p>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-content">
+                <p class="exp-title">Bachelor's Thesis, IIT Mandi &amp; TU Darmstadt</p>
+                <p class="exp-detail">Supervisors: Dr. Arnav Bhavsar &amp; Dr. Anirban Mukhopadhyay. Medical image segmentation using NCA and Diffusion models. Published as MedSegDiffNCA at IEEE CBMS 2025.</p>
+                <p class="exp-date">Aug 2023 – May 2024</p>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-content">
+                <p class="exp-title">Student Research Assistant, <a href="https://www.informatik.tu-darmstadt.de/gris/startseite_1/index.en.jsp">TU Darmstadt</a></p>
+                <p class="exp-detail">Explainable AI methods and robustness analysis under adversarial attacks. C-Arm orientation tracking for surgical workflow optimization.</p>
+                <p class="exp-date">Dec 2022 – Mar 2023</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Avni Mittal. All rights reserved.</p>
-        </div>
+        <p>Thanks to <a href="https://jonbarron.info/">Jon Barron</a> for the website template inspiration.</p>
     </footer>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,621 @@
+%
+%Academic CV LaTeX Template
+% Author: Dubasi Pavan Kumar
+% LinkedIn: https://www.linkedin.com/in/im-pavankumar/
+% License: MIT
+%
+% For errors, suggestions, or improvements, please contact:
+% Email: pavankumard.pg19.ma@nitp.ac.in
+%
+
+
+
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{graphicx}
+
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% ===== Header with photo on right =====
+% ===== Header with photo (clean 2-line contacts) =====
+% ===== Header with photo: tighter + aligned for resume =====
+% \noindent
+% \begin{minipage}[t]{0.78\textwidth}
+%     \vspace{2mm} % pushes name+links DOWN (increase/decrease)
+%     {\Huge\textbf{Avni Mittal}}\\[-1.0mm]
+
+%     \small
+%     +91-9667730877 \;|\;
+%     \href{mailto:avni.mittal2002@gmail.com}{avni.mittal2002@gmail.com} \;|\;
+%     \href{https://scholar.google.com/citations?user=itURCtMAAAAJ&hl=en}{Google Scholar}
+%     \\[-0.5mm]
+%     \socialicon{\faLinkedin}\;
+%     \href{https://linkedin.com/in/avni-mittal-5a0b3b198/}{avni-mittal-5a0b3b198}
+%     \;|\;
+%     \socialicon{\faGithub}\;
+%     \href{https://avnimittal13.github.io/portfolio/}{AvniMittal13}
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[t]{0.20\textwidth}
+%     \raggedleft
+%     \vspace{-5mm} % pulls photo UP (more negative = higher)
+%     \includegraphics[width=2.35cm]{passport_photo.jpeg} % smaller photo
+% \end{minipage}
+
+
+% \vspace{-3mm}
+% \hrule
+% \vspace{-5mm}
+
+
+% Header
+\begin{center}
+    {\Huge\textbf{Avni Mittal}}
+\end{center}
+\vspace{-4mm}
+
+\begin{center}
+    \small{
+    +91-9667730877 | \href{mailto:avni.mittal2002@gmail.com}{avni.mittal2002@gmail.com} 
+    |
+    \href{https://scholar.google.com/citations?user=itURCtMAAAAJ&hl=en}{Google Scholar} 
+    |
+    \socialicon{\faLinkedin} \href{linkedin.com/in/avni-mittal-5a0b3b198/}{avni-mittal-5a0b3b198} | 
+    \socialicon{\faGithub} \href{https://avnimittal13.github.io/portfolio/}{AvniMittal13} 
+    % | 
+    % \href{https://www.yourwebsite.com/}{yourwebsite.com}
+    }
+\end{center}
+\vspace{-5mm}
+
+
+\section{\textbf{Education}}
+\vspace{0.5mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {Indian Institute of Technology Mandi}{Himachal Pradesh, India}
+  {Bachelor of Technology in Computer Science and Engineering (Honours) - with Minor in Management}{Nov. 2020 -- May 2024}
+  \resumeItemListStart
+    \item \small{CGPA: 8.93/10, Department Rank 2}
+
+  \resumeItemListEnd
+
+\resumeSubheading
+  {Technische Universität Darmstadt}{Darmstadt, Germany}
+  {Semester Exchange (5th Semester), B.Tech CSE}{Oct. 2022 -- Mar. 2023}
+  \resumeItemListStart
+    \item \small{CGPA: 9.36/10}
+
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6.5mm}
+
+\section{\textbf{Research Interests}}
+\vspace{0.5mm}
+\small{Agentic misalignment, AI alignment and safety, interpretability, and reasoning in LLMs. I am interested in understanding model internals and failure cases, then using those insights to build lightweight, interpretable, and accessible AI systems inspired by the brain's energy efficiency.}
+
+\vspace{-2mm}
+
+\section{\textbf{Ongoing Projects}}
+\vspace{0.5mm}
+\resumeItemListStart
+  \item \textbf{TextNCA} - Neural cellular automata for language modeling.
+  \item \textbf{sonar-moe} - Speculative routing of tokens in Mixture-of-Experts (MoE) models.
+  \item \textbf{VIAS} - Organizational value alignment via activation steering.
+  \item \textbf{Understanding Cross-Image Information Flow in Multi-Image Vision-Language Models}.
+\resumeItemListEnd
+
+\vspace{-2mm}
+
+\section{\textbf{Patents and Publications} \hfill \textcolor{darkblue}{\scriptsize C=Conference, P=Patent}}
+\vspace{0.5mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}}]
+
+% ----------------- CONFERENCES -----------------
+
+% -------------------- PUBLICATIONS --------------------
+
+% \item[\textbf{[C.1]}] 
+% \textit{\underline{\textbf{Avni Mittal}}}, Arka Mukhopadhyay, Arnav Kulkarni, Anhad Thukral, Ayuj Aryan, Arnav Bhavsar.  
+% “Grapher-NCA: Integrating Global Context via Graph-Based Updates in Neural Cellular Automata.”  
+% [In Preparation]  
+% \href{}{Link (to be added)}
+
+\item[\textbf{[C.1]}] 
+\textit{\underline{\textbf{Avni Mittal}}}, Shanu Kumar, Sandipan Dandapat, Monojit Choudhary.  
+“LITMUS++: An Agentic System for Predictive Analysis of Low-Resource Languages Across Tasks and Models.”  
+\textit{IJCNLP–AACL 2025, System Demonstration Track}.  
+\href{https://aclanthology.org/2025.ijcnlp-demo.6/}{[Link]}
+
+\item[\textbf{[C.2]}] 
+\textit{\underline{\textbf{Avni Mittal}}}, Sree Hari Nagaralu, Sandipan Dandapat.  
+“PROTECT: Policy-Related Organizational Value Taxonomy for Ethical Compliance and Trust.”  
+\textit{SICon 2025 (ACL Workshop)}.  
+\href{https://aclanthology.org/2025.sicon-1.5/}{[Link]}
+
+\item[\textbf{[C.3]}] 
+\textit{\underline{\textbf{Avni Mittal}}}, John Kalkhof, Anirban Mukhopadhyay, Arnav Bhavsar.  
+“MedSegDiffNCA: Diffusion Models with Neural Cellular Automata for Skin Lesion Segmentation.”  
+\textit{IEEE CBMS 2025}.  
+\href{https://www.computer.org/csdl/proceedings-article/cbms/2025/261000a035/284Khy3rT3i}{[Link]}
+
+\item[\textbf{[C.4]}] 
+Avinash Anand, \textit{\underline{\textbf{Avni Mittal}}}, Laavanaya Dhawan, Mahisha Ramesh, Juhi Krishnamurthy,  
+Naman Lal, Raj Jaiswal, Pijush Bhuyan, Himani, Astha Verma, Rajiv Ratn Shah, Roger Zimmermann, Shin’ichi Satoh.  
+“Unveiling Learner Dynamics: The ECLIPSE Dataset and NeuralGaze Framework for Prolonged Engagement Assessment in Online Learning.”  
+\textit{ECAI 2024}.  
+\href{https://ieeexplore.ieee.org/abstract/document/10707841}{[Link]}
+
+\item[\textbf{[C.5]}] 
+Avinash Anand, \textit{\underline{\textbf{Avni Mittal}}}, Laavanaya Dhawan, Juhi Krishnamurthy, Mahisha Ramesh,  
+Naman Lal, Astha Verma, Pijush Bhuyan, Himani, Rajiv Ratn Shah, Roger Zimmermann, Shin’ichi Satoh.  
+“Exceda: Unlocking Attention Paradigms in Extended Duration E-Classrooms with Attention Mechanism.”  
+\textit{IEEE MIPR 2024}.  
+\href{https://ebooks.iospress.nl/doi/10.3233/FAIA240551}{[Link]}
+
+
+% -------------------- PATENTS --------------------
+
+\item[\textbf{[P.1]}] 
+\textit{\underline{\textbf{Avni Mittal}}}, Shanu Kumar, Sandipan Dandapat, Monojit Choudhary.  
+“Multi-Agent Predictive Systems for Cross-Domain Model Performance Assessment”  
+\textit{Patent filed}.
+
+\item[\textbf{[P.2]}] 
+Gautam Prasad, \textit{\underline{\textbf{Avni Mittal}}}, Yugal Sachdev.  
+“A System of Simultaneous Optimization of Multiple Agents.”  
+\textit{Patent filed}.
+
+\item[\textbf{[P.3]}] 
+Gautam Prasad, \textit{\underline{\textbf{Avni Mittal}}}, Yugal Sachdev.  
+“A System to Navigate Product Complexities through Automatic Visual Guide Generation.”  
+\textit{Patent being filed}.
+
+\end{enumerate}
+}
+
+\vspace{-2mm}
+
+\section{\textbf{Research Experience}}
+\vspace{0.5mm}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {Multi-Agent System for Predictive Analysis of Low-Resource Languages}{July 2025 – Present}
+  {Supervisors: Dr. Sandipan Dandapat and Dr. Monojit Choudhury}{}
+  \resumeItemListStart
+ \item Designed a multi-agent system based on directed acyclic graph (DAG) guided by an expert knowledge graph to predict model performance for the task language without fine-tuning or full benchmarking; agents retrieve multilingual evidence, extract relevant features and train lightweight regressors for prediction.
+    \item Created benchmark scenarios across six tasks and five multilingual settings to evaluate predictive accuracy and reasoning quality under diverse low-resource conditions.
+    \item Work accepted at \textbf{IJCNLP-AACL 2025 (System Demonstration Track)}; patent filed [\textbf{C.1}, \textbf{P.1}].
+  \resumeItemListEnd
+
+\resumeSubheading
+  {Faithfulness and Deceptive Reasoning in Mixture-of-Experts Models}{Sept. 2025 – Present}
+  {Supervised Research at SPAR AI (Safety Alignment Research)}{}
+  \resumeItemListStart
+    % \item Studying faithfulness and deceptive reasoning in Mixture-of-Experts (MoE) models by analyzing expert-level token routing and evaluating how disabling high-deception experts affects reasoning faithfulness and task accuracy.
+    % \item Developing a unified faithfulness metric combining accuracy and reasoning alignment with token level importance based decomposition, and extending it through \textbf{Thought Anchors} for cross-domain reasoning evaluation.
+
+% \item Designing cue-based benchmarks to test whether each step in a model’s chain-of-thought causally follows from prior reasoning and injected cues, and developing a unified faithfulness metric combining causal faithfulness and completeness.
+\item Developed a perturbation-based benchmark from PRM800K to evaluate Chain-of-Thought (CoT) faithfulness using causality and completeness as core criteria to benchmark LLMs-as-judges for faithfulness detection.
+
+% \item Designing another cue-based benchmark and unified faithfulness metrics to evaluate whether each step in a model’s chain-of-thought causally follows from prior reasoning and injected cues.
+
+    \item Studying faithfulness and deceptive reasoning in Mixture-of-Experts (MoE) models by analyzing expert-level token routing and evaluating how disabling high-deception experts affects reasoning faithfulness and task accuracy.
+
+
+  \resumeItemListEnd
+
+\resumeSubheading
+  {Medical Image Segmentation using Neural Cellular Automata and Diffusion}{Aug. 2023 – May. 2024}
+  {Supervisors: Dr. Arnav Bhavsar and Dr. Anirban Mukhopadhyay}{}
+  \resumeItemListStart
+ \item Conducted bachelor's thesis research on enhancing the \textbf{M3D-NCA} framework for medical image segmentation through region-of-interest detection and Vision Transformer–based Cellular Automata (ViTCA), achieving \textasciitilde40\% faster inference with comparable accuracy.
+    \item Proposed the integration of diffusion models with Neural Cellular Automata for improved segmentation; published as \textbf{MedSegDiffNCA} at \textbf{IEEE CBMS 2025} [\textbf{C.3}].
+\item Currently extending this work through \textbf{Grapher-NCA}, integrating graph-based global reasoning into NCA architectures to improve segmentation accuracy and convergence, while mentoring an undergraduate student team on model design and experimentation.
+
+
+  \resumeItemListEnd
+
+\resumeSubheading
+  {Multimodal Engagement Prediction in Classroom Environments}{Sept. 2023 – Aug. 2024}
+  {Supervisor: Dr. Rajiv Ratn Shah, MIDAS Lab IIIT Delhi, Research Intern}{}
+  \resumeItemListStart
+  \item Developed novel pipeline for multimodal engagement prediction in classroom environments using Neural Cellular Automata (NCA) based framework integrating local-global attention and behavioural facial features.
+  \item Curated large-scale multimodal datasets (\textbf{ExCEDA}, \textbf{ECLIPSE}) for prolonged engagement and behavioral analysis.
+  % \item Proposed a \textbf{Neural Cellular Automata (NCA)} based framework integrating local-global attention and behavioral facial features, achieving improved efficiency and performance over existing baselines.
+    \item Introduced a Context-Guided Vision Transformer (ViT) approach for modeling temporal shifts in engagement, capturing transitions across four affective states—boredom, engagement, frustration, and confusion.
+  \item Research outcomes accepted at \textbf{ECAI 2024} and \textbf{IEEE MIPR 2024} \textbf{[C.4, C.5]}.
+\resumeItemListEnd
+
+% \resumeSubheading
+%   {ToolBot: Tool Learning for Large Language Models}{Oct. 2023 -- Dec. 2023}
+%   {Independent Research Project}{}
+%   \resumeItemListStart
+%   \item Designed a conversational agent (\textbf{ToolBot}) for developer assistance using enterprise tool-specific knowledge and context-aware LLM retrieval; achieved \textbf{5th position at Inter-IIT Tech Meet 12.0}.
+
+  % \resumeItemListEnd
+
+\resumeSubheading
+  {Explainable AI Methods and Robustness Analysis}{Dec. 2022 -- Mar. 2023}
+  {Student Research Assistant, TU Darmstadt}{}
+\resumeItemListStart
+  \item Conducted a comprehensive literature review of explainable AI (XAI) methods and implemented approaches including Integrated Gradients, Grad-CAM, and SmoothGrad.
+  \item Evaluated robustness of XAI methods under adversarial attacks (DeepFool, Carlini–Wagner L2) by analyzing changes in focus maps to measure sensitivity of XAI visualizations under perturbations.
+\resumeItemListEnd
+
+\resumeProject
+  {C-Arm Orientation Tracking for Surgical Workflow Optimization}{Dec. 2022 -- Mar. 2023}
+  {Dr. Anirban Mukhopadhyay, TU Darmstadt)}{}
+\resumeItemListStart
+\item Developed real-time methods for 3D C-arm orientation estimation from 2D images using ML and analytical geometry approaches; complete pipeline implemented and preliminary work submitted to \textbf{MICCAI-AE CAI 2023}.
+
+\resumeItemListEnd
+
+
+\resumeSubheading
+  {Human Behavior Modeling and Yoga Pose Classification}{Dec. 2021 -- Mar. 2022}
+  {Research Intern, with Dr. Varun Dutt and Dr. Arnav Bhavsar, IIT Mandi iHub \& HCL}{}
+\resumeItemListStart
+  \item Developed LSTM and LRCN-based pose classification method for real-time gamified environments.
+  \item Modeled human gameplay behavior using LSTM-based next-action prediction to analyze strategic decision-making and behavioral patterns in reinforcement learning settings for Unity-RL agents.
+  \item Work recognized among top 10 nationwide teams at the \textit{ACM-W Hackathon 2021}.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-3mm}
+\section{\textbf{Industry Experience}}
+\vspace{0.5mm}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Microsoft}{Hyderabad, India}
+{Data Scientist (AI Research)}{Jan. 2024 -- Present}
+\textit{Microsoft Security Platform - Research in multi-agent systems, AI alignment, and compliance automation.}
+\resumeItemListStart
+  % \item Conducting applied research on multi-agent architectures, AI safety alignment, and organizational value compliance frameworks.
+  \item Developed the \textbf{Security Analysis Agent}, evolving from chained workflows to autonomous agentic designs with context engineering and self-correcting reasoning, achieving \textbf{89\%} precision and earning the \textit{AI Innovation Award}. Currently working to improve security reasoning depth and consistency (planning-coding) through RL.
+  \item Proposed and implemented the \textbf{Multi-Agent Prompt Tuner}, a scalable framework for coordinated prompt optimization across interdependent agents using hierarchical prompt design, textual gradient-based feedback, and dynamic reward generation to enable simultaneous tuning while maintaining task coherence (\textit{patent filed} \textbf{[P.2]}).  \item Designed the \textbf{Swarm Pinboard}, a multi-agent orchestration framework \textit{inspired by swarm intelligence}, enabling autonomous collaboration across a graph of intelligent nodes with reasoning capabilities for complex workflows.
+  % \item Built a \textbf{Security Copilot Skill} for natural language–driven data-table search and API generation. Optimized payload generation and API mapper modules; conducted extensive accuracy testing. Improved RAG performance from \textbf{60\% to 91\%}.
+  \item Built a \textbf{Security Copilot Skill} for natural language–driven data-table search and API generation, deployed to over 2,000 enterprise tenants. Optimized payload generation and API mapper modules; conducted extensive accuracy testing. Improved RAG performance from \textbf{60\% to 91\%}.
+
+\item Built an efficient multi-label document classification and reasoning for Sensitive Information Type (SIT) detection using BitNet Transformer, combining chunk-embedding encoder with language-based decoder.
+  
+  \item Developed a multi-agent system for visual guide generation for enterprise workflows (\textit{patent being filed} \textbf{[P.3]}).
+  \item Proposed a policy-driven value taxonomy integrating human ethics and compliance objectives for assessing LLM organizational alignment, resulting in \textbf{ACL SICon 2025} publication \textbf{[C.2]}.
+\resumeItemListEnd
+
+\resumeSubheading
+{Intuit India}{Bangalore, India}
+{Software Engineer Intern}{May 2023 -- Jul. 2023}
+\resumeItemListStart
+  \item Redesigned the internal \textit{TestEasy} platform from a monolithic to a microservices-based architecture, integrating downstream document, consent and identity pipelines.
+  \item Implemented and deployed a production-ready test account cloning feature with unit and integration tests.
+\resumeItemListEnd
+
+\resumeSubheading
+{Fellowship.AI}{Remote}
+{Data Science Fellow}{Oct. 2022 -- Dec. 2022}
+\resumeItemListStart
+  \item Reproduced and modularized the \textbf{Total Relighting} pipeline for portrait relighting and background replacement.
+  \item Integrated open-source models (Semantic Guided Human Matting, GracoNet Object Placement, Harmonizer) into an interactive real-time demo with seamless pipeline orchestration for end-to-end processing.
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\vspace{-5mm}
+
+\section{\textbf{Standardized Tests}}
+\vspace{0.5mm}
+\textbf{TOEFL (iBT):} \textbf{119/120} - Listening: 30, Reading: 29, Speaking: 30, Writing: 30\\
+\textbf{GRE General Test:} \textbf{326/340} - Quant: 168, Verbal: 158, Analytical Writing: 4.0
+
+\vspace{-2mm}
+
+\section{\textbf{Awards and Talks}}
+\vspace{0.5mm}
+\resumeItemListStart
+  \item \textbf{Invited Talk}, "How Agentic Systems Can Be Developed for Organizational Information Processing Using RAG." at IIT Hyderabad for Digital Transformation series \hfill \textit{\footnotesize{Sept. 2025}}
+  
+  \item \textbf{AI Innovation Award}, Microsoft Security Platform - For Security Analysis Agent \hfill \textit{\footnotesize{2025}}
+
+  \item \textbf{Institute Merit Scholarship (Female Students)} - Full tuition waiver awarded for academic excellence. \hfill \textit{\footnotesize{2020-2024}}
+  
+  \item \textbf{Academic Excellence Award (CSE)}, IIT Mandi - Highest SGPA in 5th and 6th semesters. \hfill \textit{\footnotesize{2023, 2024}}
+  
+  \item \textbf{Top 5 Rank}, Inter-IIT Tech Meet - Representing IIT Mandi. Also achieved Top 10 Rank in 2022. \hfill \textit{\footnotesize{2023}}
+  
+  \item \textbf{Top 10 Finalist}, ACM-W India Hackathons \hfill \textit{\footnotesize{2021, 2022}}
+  
+  \item \textbf{Winner}, LLM Hack 2024, Atlas Astrothon, Vision Arcadia, Build-a-Bot, and Hack36 organized at IIT Mandi \hfill \textit{\footnotesize{2024}}
+
+   \item \textbf{JEE Main AIR 5067} among 1.2M candidates; \textbf{JEE Advanced AIR 5287} among 250k candidates \hfill \textit{\footnotesize{2020}}
+
+\resumeItemListEnd
+
+\vspace{-2mm}
+
+\section{\textbf{Teaching and Leadership Experience}}
+\vspace{0.5mm}
+
+\resumeItemListStart
+
+
+\item \textbf{CS672 Advanced Deep Learning} \hfill Feb.-May 2025 \\
+\textit{Research group lead, guided two UG student groups on GNNs and NCA, Advised by Dr. Arnav Bhavsar} \hfill \textit{SCEE, IIT Mandi}
+
+\vspace{1.5mm}
+
+\item \textbf{CS202 Paradigms of Programming} \hfill Feb.-May 2024 \\
+\textit{Teaching assistant, advised by Dr. Varunkumar Jayapaul} \hfill \textit{SCEE, IIT Mandi}
+
+\vspace{1.5mm}
+
+\item \textbf{IC272 Data Science III} \hfill Aug.-Dec. 2023 \\
+\textit{Teaching assistant, advised by Dr. Dilip A. D.} \hfill \textit{SCEE, IIT Mandi}
+
+\item \textbf{Core Team Member - Conducting sessions and Organizing talks} \hfill 2021-2023 \\
+\textit{ACM-Women Chapter, Robotronics Club, Space Technology and Astronomy Club, Programming Club} \hfill \textit{IIT Mandi}
+
+
+\resumeItemListEnd
+
+\vspace{-2mm}
+
+\section{\textbf{Skills and Relevant Courses}}
+\vspace{0.5mm}
+\resumeHeadingSkillStart
+
+  \resumeSubItem{Relevant Courses: }
+    {Advanced Deep Learning, Computer Vision, Learning Robots, Probabilistic Graphical Models, Text Analytics, Information and Database systems, Computer Orgnanization, Data Structures and Algorithms}
+
+% \resumeSubItem{Machine Learning \& Deep Learning: }
+%     {Diffusion Models, Neural Cellular Automata (NCA), Vision Transformers, Large Language Models (LLMs), Prompt Engineering}
+
+  \resumeSubItem{Programming Languages: }
+    {Python, C++, Java, JavaScript, C, Shell Scripting, LaTeX}
+
+  \resumeSubItem{Frameworks \& Tools: }
+    {LangChain, AutoGen, LangGraph, FastAPI, Docker, Git, Azure, PyTorch, TensorFlow}
+
+
+\resumeHeadingSkillEnd
+
+\vspace{-2mm}
+
+\section{\textbf{References}}
+\vspace{0.5mm}
+
+\resumeItemListStart
+
+\item \textbf{Dr. Monojit Choudhury}\\
+Professor of Natural Language Processing\\
+Mohamed bin Zayed University of Artificial Intelligence. \\
+% \textit{Research Interests:} Medical Image Computing, Computer-Assisted Surgery, Domain Adaptation \\
+\textbf{Email:} monojit.choudhury@mbzuai.ac.ae
+
+\item \textbf{Dr. Sandipan Dandapat}\\
+Associate Professor, Department of Computer Science and Engineering\\
+Indian Institute of Technology Hyderabad \\
+% \textit{Research Interests:} Natural Language Processing, Generative AI, Multilingual Language Technologies \\
+\textbf{Email:} sdandapat@cse.iith.ac.in
+
+\item \textbf{Dr. Rajiv Ratn Shah}\\
+Professor, MIDAS Lab\\
+Indraprastha Institute of Information Technology Delhi \\
+% \textit{Research Interests:} Computer Vision, Medical Image Analysis, Deep Learning \\
+\textbf{Email:} rajivratn@iiitd.ac.in
+
+\item \textbf{Dr. Arnav Bhavsar}\\
+Associate Professor, School of Computing and Electrical Engineering\\
+Indian Institute of Technology Mandi \\
+% \textit{Research Interests:} Computer Vision, Medical Image Analysis, Deep Learning \\
+\textbf{Email:} arnav@iitmandi.ac.in
+
+\item \textbf{Dr. Anirban Mukhopadhyay}\\
+Independent Research Group (IRG) Leader, MEC Lab\\
+Technische Universität Darmstadt, Germany \\
+% \textit{Research Interests:} Medical Image Computing, Computer-Assisted Surgery, Domain Adaptation \\
+\textbf{Email:} anirban.mukhopadhyay@gris.tu-darmstadt.de
+\resumeItemListEnd
+
+% \section{\textbf{References}}
+% \vspace{-0.2mm}
+% \small{
+% \begin{enumerate}[leftmargin=*,labelsep=2mm]
+% \item \textbf{Dr. Sandipan Dandapat}\\
+%    Job Title, Department\\
+%    Organization/Institution Name\\
+%    Email: email1@example.com\\
+%    Phone: +X-XXX-XXX-XXXX\\
+%    \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
+
+% \item \textbf{Dr. Arnav Vinayak Bhavsar}\\
+%    Job Title, Department\\
+%    Organization/Institution Name\\
+%    Email: email2@example.com\\
+%    Phone: +X-XXX-XXX-XXXX\\
+%    \textit{Relationship: [e.g., Project Supervisor, Colleague, etc.]}
+
+% \item \textbf{Dr. Anirban Mukhopadhyay}\\
+%    Job Title, Department\\
+%    Organization/Institution Name\\
+%    Email: email3@example.com\\
+%    Phone: +X-XXX-XXX-XXXX\\
+%    \textit{Relationship: [e.g., Mentor, Collaborator, etc.]}
+% \end{enumerate}
+% }
+
+% \vspace{-2mm}
+% \section{\textbf{Links}}
+% \vspace{0.5mm}
+% Google Scholar: \url{https://scholar.google.com/citations?user=itURCtMAAAAJ&hl=en}\\
+% LinkedIn: \url{https://www.linkedin.com/in/avni-mittal-5a0b3b198/}\\
+% Portfolio: \url{https://avnimittal13.github.io/portfolio/}
+
+% \vspace{1em}
+% \noindent\textbf{Publication Links:}\\[0.25em]
+
+% \textbf{C.2} PROTECT (SICon 2025): \url{https://aclanthology.org/2025.sicon-1.5/}\\
+
+% \textbf{C.3} MedSegDiffNCA (IEEE CBMS 2025): \url{https://www.computer.org/csdl/proceedings-article/cbms/2025/261000a035/284Khy3rT3i}\\
+% \textbf{C.4} ECLIPSE Dataset (ECAI 2024): \url{https://ieeexplore.ieee.org/abstract/document/10707841}\\
+% \textbf{C.5} Exceda (IEEE MIPR 2024): \url{https://ebooks.iospress.nl/doi/10.3233/FAIA240551}
+
+
+
+
+
+\end{document}

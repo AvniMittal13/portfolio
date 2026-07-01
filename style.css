@@ -203,6 +203,12 @@ strong {
     padding-left: 20px;
 }
 
+.ongoing-intro {
+    margin-bottom: 8px;
+    font-size: 0.93rem;
+    color: #333;
+}
+
 .ongoing-list li {
     font-size: 0.93rem;
     color: #333;

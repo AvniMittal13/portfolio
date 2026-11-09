@@ -338,6 +338,7 @@
     <div class="shelf-title">
       <h2>The side-quest shelf</h2>
       <p class="hand">I like having side quests. pull one out ↓</p>
+      <p class="hand shelf-swipe">swipe the shelf for more →</p>
     </div>
     <div class="shelf-scroll">
       <div class="shelf" id="shelfRow">
@@ -354,7 +355,7 @@
       </div>
       <div class="plank"></div>
     </div>
-    <div class="slip" aria-live="polite"><b id="slipTitle">Pick a book</b><span id="slipDesc">Hover over (or tap) a spine to read the blurb.</span></div>
+    <div class="slip" aria-live="polite"><b id="slipTitle">Pick a book</b><span id="slipDesc">Hover over (or tap) a book to read its blurb.</span></div>
   </section>
 
   <!-- ================= LIBRARY CARD ================= -->
@@ -470,7 +471,7 @@
       pageNum.textContent = txt;
       prevBtn.disabled = k === 0;
       nextBtn.disabled = k === maxK;
-      if (k > 0) hint.textContent = single ? 'swipe or tap the edges to turn' : 'click a page, or use ← → to turn';
+      hint.textContent = single ? 'swipe, or tap the page edges, to turn' : 'click a page, or use ← → to turn';
     }
 
     function go(target) {
@@ -539,10 +540,21 @@
   // ---------- bookshelf blurb slip ----------
   (function () {
     var t = document.getElementById('slipTitle'), d = document.getElementById('slipDesc');
+    var touch = window.matchMedia('(hover: none)').matches, picked = null;
     document.querySelectorAll('.spine').forEach(function (s) {
-      function show() { t.textContent = s.dataset.title; d.textContent = s.dataset.desc; }
+      function show() {
+        t.textContent = s.dataset.title;
+        d.textContent = s.dataset.desc + (touch && s.getAttribute('href') ? ' (tap the book again to open it)' : '');
+      }
       s.addEventListener('mouseenter', show);
       s.addEventListener('focus', show);
+      // on phones there is no hover: the first tap pulls the book out and shows its blurb, the second opens it
+      s.addEventListener('click', function (e) {
+        if (!touch || picked === s) return;
+        e.preventDefault();
+        if (picked) picked.classList.remove('picked');
+        picked = s; s.classList.add('picked'); show();
+      });
     });
   })();
 </script>

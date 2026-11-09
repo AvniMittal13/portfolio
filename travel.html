@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avni's Travel Globe</title>
+<meta name="description" content="Every place Avni has wandered to from Delhi, on a little spinnable globe.">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Literata:ital,wght@0,400;0,600;1,400&family=Gaegu:wght@400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fun.css">
+<style>
+  :root { --ocean: #d6ecff; --land: #f3e6d8; --land-line: #fffdf7; --visited: #ffbfd6; --home: #ffef7a; --grat: #b4d6f2; --arc: #df8fa8; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ocean: #1f3447; --land: #3d3550; --land-line: #241f29; --visited: #b9607f; --home: #c9b44a; --grat: #2c4a63; --arc: #ff9fc0; }
+  }
+  :root[data-theme="dark"] { --ocean: #1f3447; --land: #3d3550; --land-line: #241f29; --visited: #b9607f; --home: #c9b44a; --grat: #2c4a63; --arc: #ff9fc0; }
+
+  /* boarding pass */
+  .pass {
+    display: grid; grid-template-columns: 1fr 190px; margin: 26px 0 10px; color: #2f2433;
+    filter: drop-shadow(0 16px 22px rgba(47, 36, 51, .22)); font-family: var(--f-type);
+  }
+  .pass-main, .pass-stub { background: #fffaf0; position: relative; }
+  .pass-main { border-radius: 18px 0 0 18px; padding: 22px 28px; border-right: 3px dashed #e3c9a0; }
+  .pass-stub { border-radius: 0 18px 18px 0; padding: 22px 18px; display: flex; flex-direction: column; justify-content: space-between; }
+  .pass-top { display: flex; justify-content: space-between; font-weight: 700; font-size: 13px; letter-spacing: .2em; border-bottom: 2px solid #2f2433; padding-bottom: 8px; }
+  .pass-top .air { color: #c2405f; }
+  .route { display: flex; align-items: center; gap: 16px; margin: 18px 0 14px; }
+  .route b { display: block; font-family: var(--f-display); font-weight: 700; font-size: clamp(44px, 8vw, 68px); line-height: 1; font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .route small { font-size: 13px; letter-spacing: .06em; color: #6f6069; }
+  .route .fly { flex: 1; min-width: 60px; }
+  .fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .fields div span { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #6f6069; }
+  .fields div b { font-size: 15px; }
+  .barcode { height: 64px; background: repeating-linear-gradient(90deg, #2f2433 0 2px, transparent 2px 4px, #2f2433 4px 7px, transparent 7px 9px, #2f2433 9px 10px, transparent 10px 13px); border-radius: 2px; }
+  .stub-txt { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; }
+  .stub-txt b { font-size: 15px; }
+
+  .travel-intro { text-align: center; margin: 34px auto 6px; max-width: 60ch; }
+  .travel-intro h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(38px, 6.4vw, 56px); line-height: 1.05; font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .travel-intro h1 em { font-weight: 400; }
+  .travel-intro p { margin-top: 12px; }
+
+  /* globe card */
+  .globe-card { display: grid; grid-template-columns: 1.35fr 1fr; gap: 26px; align-items: center; padding: 26px; }
+  .globe-box { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1; justify-self: center; }
+  #globe { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+  #globe:active { cursor: grabbing; }
+  #globe .sphere { fill: var(--ocean); stroke: var(--ink); stroke-width: 2.5; }
+  #globe .grat { fill: none; stroke: var(--grat); stroke-width: .7; stroke-dasharray: 2 3; }
+  #globe .land { fill: var(--land); stroke: var(--land-line); stroke-width: .6; }
+  #globe .land.visited { fill: var(--visited); }
+  #globe .land.home { fill: var(--home); }
+  #globe .arc { fill: none; stroke: var(--arc); stroke-width: 1.4; stroke-dasharray: 3 5; opacity: .55; animation: dash 1.6s linear infinite; }
+  #globe .arc.active { stroke-width: 2.6; opacity: 1; }
+  @keyframes dash { to { stroke-dashoffset: -16; } }
+  #globe .pin { fill: #fffdf7; stroke: #2f2433; stroke-width: 1.8; cursor: pointer; }
+  #globe .pin.active { fill: #ff6f9f; }
+  #globe .home-pin { fill: #ffef7a; stroke: #2f2433; stroke-width: 2; cursor: pointer; }
+  #globe .lbl { font: 700 22px var(--f-hand); fill: var(--ink); paint-order: stroke; stroke: var(--page); stroke-width: 5px; pointer-events: none; }
+  .globe-msg { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--ink-soft); font: 700 22px var(--f-hand); padding: 20px; pointer-events: none; }
+  .globe-tip { font-size: 20px; color: var(--ink-soft); text-align: center; margin-top: 6px; }
+
+  .postcard {
+    background: var(--page); border: 2px solid var(--rule); border-radius: 6px; padding: 20px 20px 18px;
+    position: relative; min-height: 210px; transform: rotate(1.2deg); box-shadow: var(--shadow);
+  }
+  .postcard .stampbox {
+    position: absolute; top: 14px; right: 14px; width: 58px; height: 68px; background: var(--b);
+    outline: 4px dotted var(--page); outline-offset: -2px; display: grid; place-items: center; font-size: 30px; transform: rotate(5deg);
+  }
+  .postcard .k { font: 400 13px var(--f-type); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+  .postcard h2 { font-family: var(--f-display); font-weight: 600; font-size: 40px; line-height: 1.05; margin: 6px 0 2px; padding-right: 66px; font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .postcard .country { font: 700 20px var(--f-hand); color: var(--ink-soft); }
+  .ctrl { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+  .ctrl .notetab { font-size: 17px; padding: 7px 12px; }
+
+  /* cities */
+  .regions { columns: 3 250px; column-gap: 22px; margin-top: 10px; }
+  .region { padding: 22px 24px; margin: 0 0 22px; break-inside: avoid; display: block; }
+  .region h3 { font-family: var(--f-display); font-weight: 600; font-size: 26px; margin-bottom: 10px; font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .region h3 small { font: 400 13px var(--f-type); color: var(--ink-soft); letter-spacing: .1em; display: block; margin-top: 2px; }
+  .cities { display: flex; flex-wrap: wrap; gap: 8px; }
+  .city {
+    font: 700 18px var(--f-hand); color: var(--ink); background: transparent; cursor: pointer;
+    border: 2px solid var(--rule); border-radius: 999px; padding: 2px 12px;
+    transition: transform .15s, border-color .15s, background .15s;
+  }
+  .city:hover { transform: translateY(-2px); border-color: var(--ink); }
+  .city.active { background: var(--p); color: #2f2433; border-color: #2f2433; }
+  .city.homecity { background: var(--y); color: #2f2433; border-color: #2f2433; }
+
+  .next { text-align: center; margin: 40px 0 10px; font-size: 24px; }
+  .next a { font-weight: 700; }
+
+  @media (max-width: 760px) {
+    .pass { grid-template-columns: 1fr; }
+    .pass-main { border-radius: 18px 18px 0 0; border-right: 0; border-bottom: 3px dashed #e3c9a0; padding: 18px; }
+    .pass-stub { border-radius: 0 0 18px 18px; flex-direction: row; align-items: center; gap: 16px; }
+    .barcode { width: 110px; height: 44px; flex: 0 0 auto; }
+    .fields { grid-template-columns: repeat(2, 1fr); }
+    .globe-card { grid-template-columns: 1fr; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="topbar" aria-label="Pages">
+    <a class="notetab" href="fun.html" style="--tabc:var(--p);--r:-1.5deg" data-worm="back to the book!">← back to the book</a>
+    <div class="group">
+      <a class="notetab" href="index.html" style="--tabc:var(--b);--r:1deg" data-worm="boooring (jk)">the serious version</a>
+      <button class="notetab" id="wormBtn" type="button" style="--tabc:var(--m);--r:-1deg">🐛 bookworm: on</button>
+      <button class="notetab" id="themeBtn" type="button" style="--tabc:var(--y);--r:1.5deg">☾ night reading</button>
+    </div>
+  </nav>
+
+  <!-- ================= BOARDING PASS ================= -->
+  <header class="pass" aria-label="Boarding pass: Delhi to wherever's next">
+    <div class="pass-main">
+      <div class="pass-top"><span>BOARDING PASS</span><span class="air">AVNI AIR ✈</span></div>
+      <div class="route">
+        <div><b>DEL</b><small>Delhi · home</small></div>
+        <svg class="fly" height="34" viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><path d="M4 26 Q100 -6 196 26" fill="none" stroke="#2f2433" stroke-width="2" stroke-dasharray="4 6"/></svg>
+        <div style="text-align:right"><b>???</b><small>wherever's next</small></div>
+      </div>
+      <div class="fields">
+        <div><span>passenger</span><b>MITTAL / AVNI</b></div>
+        <div><span>class</span><b>SOLO</b></div>
+        <div><span>stops so far</span><b>lost count</b></div>
+        <div><span>gate</span><b>trials &amp; misses</b></div>
+      </div>
+    </div>
+    <div class="pass-stub">
+      <div class="stub-txt">from <b>DEL</b><br>to <b>???</b><br>admit one<br>curious human</div>
+      <div class="barcode" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <div class="travel-intro">
+    <h1>The <em>wanderlust</em> chapter</h1>
+    <p>I'm from Delhi, India. Somewhere along the way I fell in love with travelling, and got the confidence to travel solo through many trials and misses.</p>
+  </div>
+
+  <!-- ================= GLOBE ================= -->
+  <section class="page globe-card" aria-label="Interactive globe of places visited">
+    <div>
+      <div class="globe-box">
+        <svg id="globe" viewBox="0 0 520 520" role="img" aria-label="A spinning globe with pins on every city Avni has visited, and flight paths from Delhi"></svg>
+        <div class="globe-msg" id="globeMsg">unrolling the map…</div>
+      </div>
+      <p class="globe-tip hand">drag to spin · tap a pin or a city below</p>
+    </div>
+
+    <div class="postcard" aria-live="polite">
+      <div class="stampbox" id="stamp">🇮🇳</div>
+      <div class="k">greetings from</div>
+      <h2 id="pcCity">Delhi</h2>
+      <div class="country" id="pcCountry">India · home, where every trip starts</div>
+      <div class="ctrl">
+        <button class="notetab" id="prevBtn" type="button" style="--tabc:var(--b)">← prev</button>
+        <button class="notetab" id="nextBtn" type="button" style="--tabc:var(--m)">next →</button>
+        <button class="notetab" id="spinBtn" type="button" style="--tabc:var(--y)">pause spin</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CITY LIST ================= -->
+  <section aria-label="Cities by region">
+    <div class="regions" id="regions"></div>
+  </section>
+
+  <p class="next hand">got a place I should go next? <a href="mailto:avni.mittal2002@gmail.com" data-worm="say hi!">tell me!</a></p>
+</div>
+
+<footer>
+  <div class="hand">Avni Mittal · Delhi → wherever's next</div>
+  <div style="margin-top:6px"><a href="fun.html">the book</a> · <a href="index.html">the serious version</a></div>
+</footer>
+
+<script src="fun.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script>
+  // [city, country, flag, region, lon, lat]; index 0 is home
+  var PLACES = [
+    ['Delhi', 'India', '🇮🇳', 'India', 77.21, 28.61],
+    ['Frankfurt', 'Germany', '🇩🇪', 'Europe', 8.68, 50.11],
+    ['Munich', 'Germany', '🇩🇪', 'Europe', 11.58, 48.14],
+    ['Amsterdam', 'Netherlands', '🇳🇱', 'Europe', 4.90, 52.37],
+    ['Brussels', 'Belgium', '🇧🇪', 'Europe', 4.35, 50.85],
+    ['Bruges', 'Belgium', '🇧🇪', 'Europe', 3.22, 51.21],
+    ['Paris', 'France', '🇫🇷', 'Europe', 2.35, 48.86],
+    ['Rome', 'Italy', '🇮🇹', 'Europe', 12.50, 41.90],
+    ['Venice', 'Italy', '🇮🇹', 'Europe', 12.32, 45.44],
+    ['Lucerne', 'Switzerland', '🇨🇭', 'Europe', 8.31, 47.05],
+    ['Interlaken', 'Switzerland', '🇨🇭', 'Europe', 7.86, 46.69],
+    ['Salzburg', 'Austria', '🇦🇹', 'Europe', 13.04, 47.81],
+    ['Vienna', 'Austria', '🇦🇹', 'Europe', 16.37, 48.21],
+    ['Prague', 'Czechia', '🇨🇿', 'Europe', 14.44, 50.08],
+    ['Budapest', 'Hungary', '🇭🇺', 'Europe', 19.04, 47.50],
+    ['Barcelona', 'Spain', '🇪🇸', 'Europe', 2.17, 41.39],
+    ['Madrid', 'Spain', '🇪🇸', 'Europe', -3.70, 40.42],
+    ['Lisbon', 'Portugal', '🇵🇹', 'Europe', -9.14, 38.72],
+    ['Seattle', 'USA', '🇺🇸', 'North America', -122.33, 47.61],
+    ['San Francisco', 'USA', '🇺🇸', 'North America', -122.42, 37.77],
+    ['Los Angeles', 'USA', '🇺🇸', 'North America', -118.24, 34.05],
+    ['San Diego', 'USA', '🇺🇸', 'North America', -117.16, 32.72],
+    ['Las Vegas', 'USA', '🇺🇸', 'North America', -115.14, 36.17],
+    ['New York City', 'USA', '🇺🇸', 'North America', -74.01, 40.71],
+    ['Dubai', 'UAE', '🇦🇪', 'Asia', 55.27, 25.20],
+    ['Bangkok', 'Thailand', '🇹🇭', 'Asia', 100.50, 13.76],
+    ['Krabi', 'Thailand', '🇹🇭', 'Asia', 98.91, 8.09],
+    ['Phuket', 'Thailand', '🇹🇭', 'Asia', 98.39, 7.88],
+    ['Singapore', 'Singapore', '🇸🇬', 'Asia', 103.82, 1.35],
+    ['Seoul', 'South Korea', '🇰🇷', 'Asia', 126.98, 37.57],
+    ['Tokyo', 'Japan', '🇯🇵', 'Asia', 139.69, 35.68],
+    ['Kyoto', 'Japan', '🇯🇵', 'Asia', 135.77, 35.01],
+    ['Osaka', 'Japan', '🇯🇵', 'Asia', 135.50, 34.69]
+  ];
+  // ISO 3166 numeric ids, as used by world-atlas
+  var HOME_ID = '356';
+  var VISITED = ['276', '528', '056', '250', '380', '756', '840', '410', '392', '764', '702', '784', '040', '203', '348', '724', '620'];
+  var REGIONS = [
+    { name: 'India', note: 'home, where it starts' },
+    { name: 'Europe', note: '' },
+    { name: 'North America', note: '' },
+    { name: 'Asia', note: '' }
+  ];
+
+  // ---- city list ----
+  var regionsEl = document.getElementById('regions');
+  REGIONS.forEach(function (r, ri) {
+    var box = document.createElement('div');
+    box.className = 'page region';
+    var h = document.createElement('h3');
+    h.textContent = r.name;
+    if (r.note) { var sm = document.createElement('small'); sm.textContent = r.note; h.appendChild(sm); }
+    var list = document.createElement('div'); list.className = 'cities';
+    PLACES.forEach(function (p, i) {
+      if (p[3] !== r.name) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'city' + (i === 0 ? ' homecity' : ''); b.dataset.i = i;
+      b.textContent = p[2] + ' ' + p[0];
+      b.addEventListener('click', function () { select(i, true); });
+      list.appendChild(b);
+    });
+    box.appendChild(h); box.appendChild(list);
+    regionsEl.appendChild(box);
+  });
+
+  // ---- postcard + selection (works even without the globe) ----
+  var current = 0, flyTo = null;
+  function select(i, scroll) {
+    current = (i + PLACES.length) % PLACES.length;
+    var p = PLACES[current];
+    document.getElementById('pcCity').textContent = p[0];
+    document.getElementById('pcCountry').textContent = current === 0 ? 'India · home, where every trip starts' : (p[1] === p[3] ? p[1] : p[1] + ' · ' + p[3]);
+    document.getElementById('stamp').textContent = p[2];
+    document.querySelectorAll('.city').forEach(function (c) { c.classList.toggle('active', +c.dataset.i === current && current !== 0); });
+    if (flyTo) flyTo(current);
+    if (scroll) document.querySelector('.globe-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  document.getElementById('prevBtn').addEventListener('click', function () { select(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function () { select(current + 1); });
+
+  // ---- globe ----
+  (function () {
+    var msg = document.getElementById('globeMsg');
+    if (!window.d3 || !window.topojson) { msg.textContent = 'the globe is napping (couldn\'t load), but the list below still works!'; return; }
+
+    var W = 520, R = 245, HOME = [PLACES[0][4], PLACES[0][5]];
+    var svg = d3.select('#globe');
+    var proj = d3.geoOrthographic().scale(R).translate([W / 2, W / 2]).clipAngle(90).rotate([-HOME[0], -HOME[1] * 0.8]);
+    var path = d3.geoPath(proj);
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var spinning = !reduce, dragging = false, flying = false;
+
+    svg.append('path').datum({ type: 'Sphere' }).attr('class', 'sphere');
+    svg.append('path').datum(d3.geoGraticule10()).attr('class', 'grat');
+    var landG = svg.append('g');
+    var arcs = svg.append('g').selectAll('path').data(PLACES.slice(1)).enter().append('path')
+      .attr('class', 'arc')
+      .datum(function (p) { return { type: 'LineString', coordinates: [HOME, [p[4], p[5]]], p: p }; });
+    var pins = svg.append('g').selectAll('circle').data(PLACES).enter().append('circle')
+      .attr('class', function (d, i) { return i === 0 ? 'home-pin' : 'pin'; })
+      .on('click', function (e, d) { select(PLACES.indexOf(d)); });
+    pins.append('title').text(function (d) { return d[0] + ', ' + d[1]; });
+    var homeLbl = svg.append('text').attr('class', 'lbl').attr('text-anchor', 'middle').text('home ♡');
+    var lbl = svg.append('text').attr('class', 'lbl').attr('text-anchor', 'middle');
+
+    function vis(c, ll) { return d3.geoDistance(ll, c) < Math.PI / 2 - 0.02; }
+    function render() {
+      svg.selectAll('.sphere, .grat').attr('d', path);
+      landG.selectAll('path').attr('d', path);
+      arcs.attr('d', path).classed('active', function (d) { return PLACES.indexOf(d.p) === current; });
+      var c = proj.invert([W / 2, W / 2]);
+      pins.each(function (d, i) {
+        var xy = proj([d[4], d[5]]);
+        d3.select(this).attr('cx', xy[0]).attr('cy', xy[1])
+          .attr('display', vis(c, [d[4], d[5]]) ? null : 'none')
+          .classed('active', i === current && i !== 0)
+          .attr('r', i === 0 ? 8 : (i === current ? 8 : 5));
+      });
+      var hxy = proj(HOME);
+      homeLbl.attr('x', hxy[0]).attr('y', hxy[1] + 30).attr('display', vis(c, HOME) ? null : 'none');
+      if (current > 0) {
+        var p = PLACES[current], ll = [p[4], p[5]], xy = proj(ll);
+        lbl.attr('x', xy[0]).attr('y', xy[1] - 16).text(p[0]).attr('display', vis(c, ll) ? null : 'none');
+      } else {
+        lbl.attr('display', 'none');
+      }
+    }
+
+    flyTo = function (i) {
+      var p = PLACES[i], to = [-p[4], -p[5] * 0.8, 0];
+      var interp = d3.interpolate(proj.rotate(), to);
+      setSpin(false);
+      if (reduce) { proj.rotate(to); render(); return; }
+      flying = true;
+      svg.transition().duration(1100).ease(d3.easeCubicInOut)
+        .tween('rotate', function () { return function (t) { proj.rotate(interp(t)); render(); }; })
+        .on('end interrupt', function () { flying = false; });
+    };
+
+    svg.call(d3.drag()
+      .on('start', function () { dragging = true; svg.interrupt(); flying = false; })
+      .on('drag', function (e) {
+        var r = proj.rotate(), k = 0.3;
+        proj.rotate([r[0] + e.dx * k, Math.max(-80, Math.min(80, r[1] - e.dy * k)), r[2]]);
+        render();
+      })
+      .on('end', function () { dragging = false; }));
+
+    var spinBtn = document.getElementById('spinBtn');
+    function setSpin(on) { spinning = on; spinBtn.textContent = on ? 'pause spin' : 'spin ↻'; }
+    setSpin(spinning);
+    spinBtn.addEventListener('click', function () { setSpin(!spinning); });
+
+    d3.timer(function () {
+      if (spinning && !dragging && !flying) {
+        var r = proj.rotate();
+        proj.rotate([r[0] + 0.16, r[1], r[2]]);
+        render();
+      }
+    });
+
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(function (world) {
+      var feats = topojson.feature(world, world.objects.countries).features;
+      landG.selectAll('path').data(feats).enter().append('path')
+        .attr('class', function (d) {
+          var id = String(d.id);
+          return 'land' + (id === HOME_ID ? ' home' : VISITED.indexOf(id) >= 0 ? ' visited' : '');
+        });
+      msg.remove();
+      render();
+    }).catch(function () {
+      msg.textContent = 'the map got lost in transit, but the pins still work!';
+      render();
+    });
+
+    render();
+  })();
+</script>
+</body>
+</html>

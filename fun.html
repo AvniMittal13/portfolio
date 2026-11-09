@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avni and the Side Quests</title>
+<meta name="description" content="The fun version of Avni Mittal's website: an unfinished autobiography, Avni and the side quests.">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Literata:ital,wght@0,400;0,600;1,400&family=Gaegu:wght@400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fun.css">
+</head>
+<body class="desk">
+
+<div class="wrap">
+  <nav class="topbar" aria-label="Pages">
+    <a class="notetab" href="index.html" style="--tabc:var(--b);--r:-1.5deg" data-worm="boooring (jk)">← the serious version</a>
+    <div class="group">
+      <a class="notetab" href="travel.html" style="--tabc:var(--m);--r:1deg" data-worm="take me with you!">✈ travel globe</a>
+      <button class="notetab" id="wormBtn" type="button" style="--tabc:var(--p);--r:-1deg">🐛 bookworm: on</button>
+      <button class="notetab" id="themeBtn" type="button" style="--tabc:var(--y);--r:1.5deg">☾ night reading</button>
+    </div>
+  </nav>
+
+  <!-- ================= THE BOOK (built from #bookSource by the script below) ================= -->
+  <section class="book-stage" aria-label="Avni and the side quests: a flip-book">
+    <div class="book" id="book"></div>
+
+    <!-- desk props (decorative, wide screens only) -->
+    <div class="desk-mat" aria-hidden="true"></div>
+
+    <svg class="prop chai" width="220" height="220" viewBox="0 0 220 220" aria-hidden="true">
+      <defs>
+        <radialGradient id="pSaucer" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#fbf8f3"/><stop offset=".8" stop-color="#ebe3d6"/><stop offset="1" stop-color="#d9cebe"/></radialGradient>
+        <radialGradient id="pCup" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#fffdf9"/><stop offset="1" stop-color="#e3d9ca"/></radialGradient>
+        <radialGradient id="pChai" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#c99764"/><stop offset=".7" stop-color="#a7713f"/><stop offset="1" stop-color="#7e5130"/></radialGradient>
+        <linearGradient id="pHandle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf8f2"/><stop offset="1" stop-color="#d8ccbb"/></linearGradient>
+        <filter id="pSoft"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+      <circle cx="104" cy="112" r="96" fill="url(#pSaucer)"/>
+      <circle cx="104" cy="112" r="70" fill="none" stroke="rgba(120,90,60,.12)" stroke-width="2"/>
+      <rect x="150" y="98" width="52" height="26" rx="13" fill="url(#pHandle)"/>
+      <rect x="160" y="105" width="30" height="12" rx="6" fill="#e6dccd"/>
+      <circle cx="104" cy="110" r="60" fill="url(#pCup)"/>
+      <circle cx="104" cy="110" r="51" fill="url(#pChai)"/>
+      <ellipse cx="92" cy="96" rx="22" ry="12" fill="#fff" opacity=".12"/>
+      <path d="M58 92 A50 50 0 0 1 120 60" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+      <circle cx="112" cy="122" r="1.6" fill="#5b3a22" opacity=".6"/><circle cx="98" cy="128" r="1.2" fill="#5b3a22" opacity=".5"/><circle cx="120" cy="108" r="1" fill="#5b3a22" opacity=".5"/>
+      <g class="steam" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" filter="url(#pSoft)" opacity=".5">
+        <path d="M90 100 C80 80 100 70 90 48"/><path d="M114 98 C104 78 124 66 114 42"/>
+      </g>
+    </svg>
+
+    <svg class="prop pen" width="280" height="44" viewBox="0 0 280 44" aria-hidden="true">
+      <defs>
+        <linearGradient id="pLacquer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4f68"/><stop offset=".35" stop-color="#22324a"/><stop offset="1" stop-color="#121c2b"/></linearGradient>
+        <linearGradient id="pGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dca0"/><stop offset=".5" stop-color="#c9a056"/><stop offset="1" stop-color="#8f6a2e"/></linearGradient>
+      </defs>
+      <path d="M46 14 L8 22 L46 30 Z" fill="url(#pGold)"/>
+      <path d="M12 22 L40 22" stroke="#6b4f22" stroke-width="1"/>
+      <circle cx="34" cy="22" r="2" fill="#6b4f22"/>
+      <rect x="46" y="11" width="22" height="22" rx="3" fill="#1a2433"/>
+      <rect x="68" y="8" width="196" height="28" rx="12" fill="url(#pLacquer)"/>
+      <rect x="150" y="8" width="5" height="28" fill="url(#pGold)"/>
+      <rect x="160" y="3" width="96" height="7" rx="3.5" fill="url(#pGold)"/>
+      <rect x="74" y="12" width="184" height="4" rx="2" fill="#fff" opacity=".18"/>
+    </svg>
+
+    <svg class="prop glasses" width="230" height="130" viewBox="0 0 224 124" aria-hidden="true">
+      <defs>
+        <linearGradient id="gBlack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3a3e"/><stop offset=".35" stop-color="#151517"/><stop offset="1" stop-color="#050506"/></linearGradient>
+        <linearGradient id="gLens" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9f2f7" stop-opacity=".30"/><stop offset="1" stop-color="#9fb6c4" stop-opacity=".14"/></linearGradient>
+        <linearGradient id="gGlint" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <clipPath id="gClipL"><path d="M24 62 C24 45 38 40 62 40 C86 40 100 45 100 62 C100 88 84 104 62 104 C40 104 24 88 24 62 Z"/></clipPath>
+        <clipPath id="gClipR"><path d="M124 62 C124 45 138 40 162 40 C186 40 200 45 200 62 C200 88 184 104 162 104 C140 104 124 88 124 62 Z"/></clipPath>
+      </defs>
+      <!-- folded arms behind the lenses -->
+      <path d="M22 52 C52 72 102 76 178 68" fill="none" stroke="url(#gBlack)" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M202 52 C172 78 122 82 46 74" fill="none" stroke="url(#gBlack)" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M24 62 C24 45 38 40 62 40 C86 40 100 45 100 62 C100 88 84 104 62 104 C40 104 24 88 24 62 Z" fill="url(#gLens)"/>
+      <path d="M124 62 C124 45 138 40 162 40 C186 40 200 45 200 62 C200 88 184 104 162 104 C140 104 124 88 124 62 Z" fill="url(#gLens)"/>
+      <g clip-path="url(#gClipL)"><rect x="0" y="20" width="20" height="130" fill="url(#gGlint)" transform="rotate(28 62 72)"/></g>
+      <g clip-path="url(#gClipR)"><rect x="100" y="20" width="20" height="130" fill="url(#gGlint)" transform="rotate(28 162 72)"/></g>
+      <!-- thick black rims -->
+      <path d="M24 62 C24 45 38 40 62 40 C86 40 100 45 100 62 C100 88 84 104 62 104 C40 104 24 88 24 62 Z" fill="none" stroke="url(#gBlack)" stroke-width="8"/>
+      <path d="M124 62 C124 45 138 40 162 40 C186 40 200 45 200 62 C200 88 184 104 162 104 C140 104 124 88 124 62 Z" fill="none" stroke="url(#gBlack)" stroke-width="8"/>
+      <path d="M100 56 C108 46 116 46 124 56" fill="none" stroke="url(#gBlack)" stroke-width="8" stroke-linecap="round"/>
+      <!-- gloss on the acetate -->
+      <path d="M32 44 C46 38 72 37 90 42 M132 44 C146 38 172 37 190 42 M106 49 C110 45 114 45 118 49" fill="none" stroke="#fff" stroke-width="1.6" opacity=".32" stroke-linecap="round"/>
+      <circle cx="26" cy="52" r="2" fill="#d8dde2"/><circle cx="198" cy="52" r="2" fill="#d8dde2"/>
+      <circle cx="34" cy="45" r="1.4" fill="#d8dde2"/><circle cx="190" cy="45" r="1.4" fill="#d8dde2"/>
+    </svg>
+
+    <svg class="prop sprig" width="240" height="372" viewBox="0 0 190 310" aria-hidden="true">
+      <defs>
+        <linearGradient id="oTop1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d8c5f"/><stop offset=".55" stop-color="#5f6f45"/><stop offset="1" stop-color="#4c5a37"/></linearGradient>
+        <linearGradient id="oTop2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a9868"/><stop offset=".55" stop-color="#6b7a4e"/><stop offset="1" stop-color="#55633e"/></linearGradient>
+        <linearGradient id="oUnder" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3d8c4"/><stop offset=".6" stop-color="#b3bb9f"/><stop offset="1" stop-color="#9aa386"/></linearGradient>
+        <radialGradient id="oFruit" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#7a8a52"/><stop offset=".7" stop-color="#4d5a2e"/><stop offset="1" stop-color="#3a4422"/></radialGradient>
+      </defs>
+      <path d="M92 190 C116 170 140 140 150 104" fill="none" stroke="#7a6a52" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M110 300 C96 220 64 130 70 14" fill="none" stroke="#7a6a52" stroke-width="2.6" stroke-linecap="round"/>
+      <ellipse cx="128" cy="210" rx="9" ry="12" transform="rotate(-20 128 210)" fill="url(#oFruit)"/>
+      <ellipse cx="140" cy="198" rx="8" ry="11" transform="rotate(10 140 198)" fill="url(#oFruit)"/>
+      <path d="M112 222 Q120 214 128 200 M128 200 Q134 196 140 188" fill="none" stroke="#6d5a43" stroke-width="1.4"/>
+      <g transform="translate(109.8 173.2) rotate(-80.6)"><path d="M0 0 C10.5 -7.1 29.3 -7.6 41.9 -1.2 C29.3 4.1 10.5 6.1 0 0 Z" fill="url(#oTop1)"/><path d="M2 0 Q20.9 -0.6 36.9 -1.0" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(125.8 153.6) rotate(-13.7)"><path d="M0 0 C8.9 -6.0 24.8 -2.6 35.5 2.8 C24.8 7.3 8.9 5.1 0 0 Z" fill="url(#oUnder)"/><path d="M2 0 Q17.7 1.3 31.2 2.4" fill="none" stroke="#8e9a78" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(139.4 131.1) rotate(-103.6)"><path d="M0 0 C7.8 -5.3 21.8 -6.8 31.1 -2.1 C21.8 1.9 7.8 4.5 0 0 Z" fill="url(#oTop1)"/><path d="M2 0 Q15.6 -0.9 27.4 -1.8" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(149.4 106.2) rotate(-26.5)"><path d="M0 0 C7.0 -4.8 19.7 -2.7 28.1 1.6 C19.7 5.2 7.0 4.1 0 0 Z" fill="url(#oUnder)"/><path d="M2 0 Q14.0 0.7 24.7 1.4" fill="none" stroke="#8e9a78" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(106.3 280.6) rotate(-65.1)"><path d="M0 0 C15.0 -10.2 42.1 -6.9 60.1 2.2 C42.1 9.9 15.0 8.7 0 0 Z" fill="url(#oUnder)"/><path d="M2 0 Q30.0 1.0 52.9 1.9" fill="none" stroke="#8e9a78" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(101.5 258.0) rotate(-149.8)"><path d="M0 0 C15.4 -10.5 43.2 -12.1 61.7 -2.6 C43.2 5.3 15.4 8.9 0 0 Z" fill="url(#oTop2)"/><path d="M2 0 Q30.9 -1.2 54.3 -2.2" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(96.3 234.8) rotate(-62.7)"><path d="M0 0 C14.2 -9.7 39.9 -6.0 57.0 2.8 C39.9 10.0 14.2 8.2 0 0 Z" fill="url(#oUnder)"/><path d="M2 0 Q28.5 1.2 50.1 2.3" fill="none" stroke="#8e9a78" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(90.9 210.8) rotate(-149.4)"><path d="M0 0 C12.3 -8.3 34.4 -10.1 49.1 -2.6 C34.4 3.7 12.3 7.1 0 0 Z" fill="url(#oTop2)"/><path d="M2 0 Q24.6 -1.2 43.2 -2.2" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(85.6 186.1) rotate(-65.0)"><path d="M0 0 C11.3 -7.7 31.7 -5.2 45.3 1.8 C31.7 7.5 11.3 6.5 0 0 Z" fill="url(#oTop1)"/><path d="M2 0 Q22.6 0.8 39.8 1.5" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(80.6 160.6) rotate(-141.8)"><path d="M0 0 C11.3 -7.7 31.7 -8.3 45.3 -1.3 C31.7 4.4 11.3 6.5 0 0 Z" fill="url(#oTop2)"/><path d="M2 0 Q22.7 -0.6 39.9 -1.1" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(76.3 134.1) rotate(-53.6)"><path d="M0 0 C10.2 -6.9 28.6 -4.3 40.9 2.0 C28.6 7.2 10.2 5.9 0 0 Z" fill="url(#oUnder)"/><path d="M2 0 Q20.4 0.9 36.0 1.7" fill="none" stroke="#8e9a78" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(72.8 106.6) rotate(-136.4)"><path d="M0 0 C10.9 -7.4 30.5 -9.4 43.6 -2.7 C30.5 2.9 10.9 6.3 0 0 Z" fill="url(#oTop1)"/><path d="M2 0 Q21.8 -1.2 38.4 -2.3" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(70.4 78.1) rotate(-58.4)"><path d="M0 0 C10.1 -6.9 28.3 -4.9 40.4 1.3 C28.3 6.4 10.1 5.8 0 0 Z" fill="url(#oTop2)"/><path d="M2 0 Q20.2 0.6 35.5 1.1" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(69.3 48.4) rotate(-128.3)"><path d="M0 0 C7.9 -5.3 22.0 -6.0 31.4 -1.2 C22.0 2.8 7.9 4.5 0 0 Z" fill="url(#oTop1)"/><path d="M2 0 Q15.7 -0.6 27.6 -1.0" fill="none" stroke="#e9ecdf" stroke-width=".9" opacity=".6"/></g>
+      <g transform="translate(69.8 17.5) rotate(-53.8)"><path d="M0 0 C8.3 -5.6 23.3 -4.0 33.2 1.1 C23.3 5.4 8.3 4.8 0 0 Z" fill="url(#oUnder)"/><path d="M2 0 Q16.6 0.5 29.2 1.0" fill="none" stroke="#8e9a78" stroke-width=".9" opacity=".6"/></g>
+    </svg>
+
+    <div class="book-ctrl">
+      <button class="notetab" id="prevPage" type="button" style="--tabc:var(--b)" aria-label="Previous page">← prev</button>
+      <span class="pagenum" id="pageNum" aria-live="polite">the cover</span>
+      <button class="notetab" id="nextPage" type="button" style="--tabc:var(--m)" aria-label="Next page">next →</button>
+    </div>
+    <p class="book-hint hand" id="bookHint">click a page or use ← → to turn</p>
+  </section>
+
+  <!-- Page sources, in reading order. Without JavaScript they simply show as stacked pages. -->
+  <div class="book-source" id="bookSource">
+
+    <!-- 1 · cover -->
+    <div class="bp cover-face" data-label="the cover">
+      <div class="cover-frame">
+        <p class="cover-kicker">vol. 1 · unfinished</p>
+        <h1>Avni <em>and the side quests</em></h1>
+        <div class="cover-photo">
+          <span class="tape"></span>
+          <img src="cropped-picc.jpeg" alt="Avni smiling, on a canal in Venice">
+          <span class="cap">the author :)</span>
+        </div>
+        <p class="cover-sub">an unfinished autobiography</p>
+        <p class="open-me">open me →</p>
+        <p class="cover-author">by Avni Mittal · Delhi, India</p>
+      </div>
+    </div>
+
+    <!-- 2 · bookplate -->
+    <div class="bp plate" data-label="the inside cover">
+      <div class="plate-box">
+        <p class="exl">ex libris</p>
+        <p class="who">this book belongs to whoever is reading it</p>
+        <p class="ded">for everyone still figuring it out ♡</p>
+      </div>
+    </div>
+
+    <!-- 3 · contents -->
+    <div class="bp" data-label="contents">
+      <div class="runhead"><span>avni and the side quests</span><span>contents</span></div>
+      <h2 class="page-title">Contents</h2>
+      <ol class="toc-list">
+        <li><a href="#" data-goto="4"><span class="toc-n">I</span><span class="toc-t">In a past life</span><span class="toc-dots"></span><span class="toc-p">1</span></a></li>
+        <li><a href="#" data-goto="5"><span class="toc-n">II</span><span class="toc-t">Pixels</span><span class="toc-dots"></span><span class="toc-p">2</span></a></li>
+        <li><a href="#" data-goto="6"><span class="toc-n">III</span><span class="toc-t">Hello, world</span><span class="toc-dots"></span><span class="toc-p">3</span></a></li>
+        <li><a href="#" data-goto="7"><span class="toc-n">IV</span><span class="toc-t">Enter AI</span><span class="toc-dots"></span><span class="toc-p">4</span></a></li>
+        <li><a href="#" data-goto="8"><span class="toc-n">V</span><span class="toc-t">The research bug</span><span class="toc-dots"></span><span class="toc-p">5</span></a></li>
+        <li><a href="#" data-goto="9"><span class="toc-n">VI</span><span class="toc-t">Code → research</span><span class="toc-dots"></span><span class="toc-p">6</span></a></li>
+        <li><a href="#" data-goto="10"><span class="toc-n">VII</span><span class="toc-t">Wanting more</span><span class="toc-dots"></span><span class="toc-p">7</span></a></li>
+        <li><a href="#" data-goto="11"><span class="toc-n">✈</span><span class="toc-t">Interlude <i>(wanderlust)</i></span><span class="toc-dots"></span><span class="toc-p">8</span></a></li>
+        <li><a href="#" data-goto="12"><span class="toc-n">VIII</span><span class="toc-t">Still figuring it out</span><span class="toc-dots"></span><span class="toc-p">9</span></a></li>
+        <li><a href="#shelf"><span class="toc-n">★</span><span class="toc-t">The side-quest shelf</span><span class="toc-dots"></span><span class="toc-p">?</span></a></li>
+      </ol>
+      <p class="toc-note hand">the dots only connect looking backwards ↑</p>
+    </div>
+
+    <!-- 4 · chapter I -->
+    <div class="bp" data-label="chapter one" data-tab="var(--p)">
+      <div class="runhead"><span>avni and the side quests</span><span>I</span></div>
+      <p class="ch-num">chapter one</p>
+      <h2 class="ch-title">In a past life</h2>
+      <div class="ch-body">
+        <p class="drop">In my past life, I had a <mark class="hl" style="--hlc:var(--p)">bookstagram account</mark> and my own book blogs. Before anything to do with computers, there were books.</p>
+      </div>
+      <div class="margin">
+        <svg class="doodle-svg" width="80" height="60" viewBox="0 0 86 64" aria-hidden="true"><path d="M43 14 C33 6 16 6 6 10 V54 C16 50 33 50 43 58 C53 50 70 50 80 54 V10 C70 6 53 6 43 14 Z" fill="#ffbfd6"/><path d="M43 14 V58 M14 20 C22 18 30 19 36 22 M14 30 C22 28 30 29 36 32 M50 22 C56 19 64 18 72 20"/></svg>
+        <p class="mnote hand">yes, the worm following your cursor is a reference</p>
+      </div>
+      <p class="folio">1</p>
+    </div>
+
+    <!-- 5 · chapter II -->
+    <div class="bp" data-label="chapter two" data-tab="var(--y)">
+      <div class="runhead"><span>avni and the side quests</span><span>II</span></div>
+      <p class="ch-num">chapter two</p>
+      <h2 class="ch-title">Pixels</h2>
+      <div class="ch-body">
+        <p class="drop">Then came <mark class="hl">graphic design</mark>: a few internships, then freelancing on the side, and even some print-on-demand shops.</p>
+      </div>
+      <div class="margin" style="--mr:2deg">
+        <svg class="doodle-svg" width="76" height="62" viewBox="0 0 80 66" aria-hidden="true"><path d="M40 6 C16 6 4 22 6 36 C8 50 22 60 38 58 C46 57 44 48 50 46 C58 44 74 50 76 34 C78 18 62 6 40 6 Z" fill="#ffef7a"/><circle cx="24" cy="24" r="5" fill="#ffbfd6"/><circle cx="40" cy="17" r="5" fill="#c3e4ff"/><circle cx="57" cy="24" r="5" fill="#b8efd2"/><circle cx="22" cy="41" r="5" fill="#dccdff"/></svg>
+        <p class="mnote hand">first side quests ever unlocked</p>
+      </div>
+      <p class="folio">2</p>
+    </div>
+
+    <!-- 6 · chapter III -->
+    <div class="bp" data-label="chapter three" data-tab="var(--b)">
+      <div class="runhead"><span>avni and the side quests</span><span>III</span></div>
+      <p class="ch-num">chapter three</p>
+      <h2 class="ch-title">Hello, world</h2>
+      <div class="ch-body">
+        <p class="drop">Design got me introduced to web development, and I <mark class="hl" style="--hlc:var(--b)">fell in love with development</mark>. This was the pre-AI coding era, and I learnt a lot.</p>
+      </div>
+      <div class="margin">
+        <svg class="doodle-svg" width="80" height="58" viewBox="0 0 86 62" aria-hidden="true"><rect x="14" y="6" width="58" height="38" rx="4" fill="#c3e4ff"/><path d="M4 52 H82 L76 44 H10 Z" fill="#fffdf7"/><path d="M34 18 L27 25 L34 32 M52 18 L59 25 L52 32 M46 16 L40 34"/></svg>
+        <p class="mnote hand">pre-AI. we wrote every bug ourselves.</p>
+      </div>
+      <p class="folio">3</p>
+    </div>
+
+    <!-- 7 · chapter IV -->
+    <div class="bp" data-label="chapter four" data-tab="var(--l)">
+      <div class="runhead"><span>avni and the side quests</span><span>IV</span></div>
+      <p class="ch-num">chapter four</p>
+      <h2 class="ch-title">Enter AI</h2>
+      <div class="ch-body">
+        <p class="drop">Then I got introduced to AI, and it found its way into <span class="squig">many of my projects</span>.</p>
+      </div>
+      <div class="margin" style="--mr:2deg">
+        <svg class="doodle-svg" width="66" height="66" viewBox="0 0 70 70" aria-hidden="true"><path d="M35 6 C37 24 46 33 64 35 C46 37 37 46 35 64 C33 46 24 37 6 35 C24 33 33 24 35 6 Z" fill="#dccdff"/><path d="M58 8 V18 M53 13 H63"/></svg>
+        <p class="mnote hand">+ a few hackathons along the way</p>
+      </div>
+      <p class="folio">4</p>
+    </div>
+
+    <!-- 8 · chapter V -->
+    <div class="bp" data-label="chapter five" data-tab="var(--m)">
+      <div class="runhead"><span>avni and the side quests</span><span>V</span></div>
+      <p class="ch-num">chapter five</p>
+      <h2 class="ch-title">The research bug <em>(Darmstadt)</em></h2>
+      <div class="ch-body">
+        <p class="drop">I got into research during my semester exchange at TU Darmstadt in Germany, working on <mark class="hl" style="--hlc:var(--m)">medical image segmentation</mark>.</p>
+        <p>I always love mixing up ideas, and research turned out to be the best place to do it. I'm trying, daily, to be a better researcher.</p>
+      </div>
+      <div class="margin">
+        <svg class="doodle-svg" width="66" height="58" viewBox="0 0 80 70" aria-hidden="true"><path d="M40 14 C54 12 66 22 64 36 C62 50 50 58 36 56 C22 54 14 44 16 32 C18 20 28 15 40 14 Z" fill="#b8efd2"/><circle cx="34" cy="30" r="5" fill="#ffbfd6"/><circle cx="48" cy="40" r="3.5" fill="#ffbfd6"/><path d="M40 6 C60 4 76 18 74 38 C72 58 56 68 36 66 C16 64 4 50 6 32 C8 16 22 7 40 6" stroke-dasharray="3 5"/></svg>
+        <p class="mnote hand">still my favourite rabbit hole</p>
+      </div>
+      <p class="folio">5</p>
+    </div>
+
+    <!-- 9 · chapter VI -->
+    <div class="bp" data-label="chapter six" data-tab="var(--o)">
+      <div class="runhead"><span>avni and the side quests</span><span>VI</span></div>
+      <p class="ch-num">chapter six</p>
+      <h2 class="ch-title">Code → research</h2>
+      <div class="ch-body">
+        <p class="drop">I did an SDE internship at Intuit, but I wanted to go to the ML research side, so I took a Data Scientist role at Microsoft. I loved my time there, with some of the best people: amazing managers and friends I made along the way. And I'm really happy to have been <mark class="hl" style="--hlc:var(--o)">promoted twice in 1.5 years</mark>.</p>
+      </div>
+      <div class="margin" style="--mr:2deg">
+        <svg class="doodle-svg" width="70" height="60" viewBox="0 0 76 66" aria-hidden="true"><path d="M38 60 C20 48 6 36 6 22 C6 12 14 6 22 6 C30 6 35 11 38 17 C41 11 46 6 54 6 C62 6 70 12 70 22 C70 36 56 48 38 60 Z" fill="#ffd5b5"/><path d="M20 20 C21 16 24 14 27 14"/></svg>
+        <p class="mnote hand">♡ to all of them</p>
+      </div>
+      <p class="folio">6</p>
+    </div>
+
+    <!-- 10 · chapter VII -->
+    <div class="bp" data-label="chapter seven" data-tab="var(--p)">
+      <div class="runhead"><span>avni and the side quests</span><span>VII</span></div>
+      <p class="ch-num">chapter seven</p>
+      <h2 class="ch-title">Wanting more</h2>
+      <div class="ch-body">
+        <p class="drop">Then I realised I wanted to learn more and challenge myself more. I applied to master's programmes, got a few admits, and in the end decided to go for the <mark class="hl" style="--hlc:var(--p)">Google DeepMind predoc</mark>.</p>
+      </div>
+      <div class="margin">
+        <svg class="doodle-svg" width="80" height="56" viewBox="0 0 86 60" aria-hidden="true"><path d="M6 30 L80 6 L58 54 L44 36 Z" fill="#ffbfd6"/><path d="M80 6 L44 36 L40 50 L50 42"/><path d="M4 50 C10 44 16 54 24 46" stroke-dasharray="2 5"/></svg>
+        <p class="mnote hand">plot twist!</p>
+      </div>
+      <p class="folio">7</p>
+    </div>
+
+    <!-- 11 · interlude postcard -->
+    <div class="bp" data-label="interlude" data-tab="var(--b)">
+      <div class="runhead"><span>avni and the side quests</span><span>interlude</span></div>
+      <p class="ch-num">interlude</p>
+      <h2 class="ch-title">Wanderlust</h2>
+      <p class="pc-msg">Somewhere in between, I fell in love with travelling, and got the confidence to travel solo through many trials and misses.</p>
+      <a class="globe-link" href="travel.html" data-worm="take me with you!">spin my travel globe →</a>
+      <div class="pc-addr">
+        <div class="pc-stamp" aria-hidden="true">
+          <svg class="doodle-svg" width="40" height="40" viewBox="0 0 46 46"><circle cx="23" cy="23" r="17" fill="#b8efd2"/><path d="M8 18 C16 20 20 14 28 16 C34 18 36 24 40 22 M10 30 C18 28 22 34 30 32"/></svg>
+        </div>
+        <div class="pc-postmark" aria-hidden="true">DELHI<br>✈<br>&amp; BEYOND</div>
+        <div class="pc-line">to: whoever is reading this</div>
+        <div class="pc-line">wish you were here ♡</div>
+      </div>
+      <p class="folio">8</p>
+    </div>
+
+    <!-- 12 · chapter VIII -->
+    <div class="bp" data-label="chapter eight" data-tab="var(--y)">
+      <div class="runhead"><span>avni and the side quests</span><span>VIII</span></div>
+      <p class="ch-num">chapter eight</p>
+      <h2 class="ch-title">Still figuring it out</h2>
+      <div class="ch-body">
+        <p class="drop">Honestly? I'm still confused and figuring things out. I think it's fine to <mark class="hl">not have things figured out</mark>, and to keep trying seemingly useless things, like Steve Jobs did with his calligraphy class.</p>
+      </div>
+      <div class="quote">"You can't connect the dots looking forward; you can only connect them looking backwards."<small>Steve Jobs, Stanford commencement, 2005</small></div>
+      <p class="folio">9</p>
+    </div>
+
+    <!-- 13 · the unwritten page -->
+    <div class="bp lined" data-label="the next chapter">
+      <div class="runhead"><span>avni and the side quests</span><span>IX?</span></div>
+      <p class="ch-num">chapter nine</p>
+      <p class="tbc">to be continued<span class="caret"></span></p>
+      <p class="future">ideas for this chapter:<br><s>have it all figured out</s><br>a PhD, hopefully<br>more side quests<br>more cities</p>
+      <p class="folio">10</p>
+    </div>
+
+    <!-- 14 · back cover -->
+    <div class="bp backcover" data-label="the back cover">
+      <div class="cover-frame">
+        <p class="praise">"still being written."<small>the author</small></p>
+        <p class="praise">"needs more side quests."<small>also the author</small></p>
+        <p class="blurb">Avni Mittal is from Delhi, India, and is currently a predoctoral researcher at Google DeepMind.</p>
+        <div class="isbn" aria-hidden="true"></div>
+        <a class="globe-link" href="#shelf" style="align-self:center;background:var(--cover-ink);color:var(--cover)">the side-quest shelf ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SIDE-QUEST SHELF ================= -->
+  <section class="shelf-wrap" id="shelf">
+    <div class="shelf-title">
+      <h2>The side-quest shelf</h2>
+      <p class="hand">I like having side quests. pull one out ↓</p>
+    </div>
+    <div class="shelf-scroll">
+      <div class="shelf" id="shelfRow">
+        <a class="spine" href="https://www.instagram.com/thefaeblehoarder/" target="_blank" rel="noopener" style="--sc:var(--p);--h:250px" data-title="Bookstagram · @thefaeblehoarder" data-desc="Where it all started: my book account on Instagram." data-worm="my home turf!"><span>Bookstagram</span></a>
+        <a class="spine" href="https://avnisbookishparadise.wordpress.com/" target="_blank" rel="noopener" style="--sc:var(--o);--h:226px;--w:58px" data-title="Avni's Bookish Paradise (WordPress)" data-desc="My book blog, for when a caption wasn't long enough." data-worm="ooh, the blog"><span>Bookish Paradise</span></a>
+        <a class="spine" href="https://avnisbookishparadise.blogspot.com/" target="_blank" rel="noopener" style="--sc:var(--y);--h:240px;--w:52px" data-title="Avni's Bookish Paradise (Blogspot)" data-desc="The other home of my book blog." data-worm="vol. 2!"><span>Bookish Paradise II</span></a>
+        <a class="spine" tabindex="0" style="--sc:var(--b);--h:262px;--w:74px" data-title="Graphic design" data-desc="Internships first, then freelancing on the side." data-worm="pretty pixels"><span>Design freelancing</span></a>
+        <a class="spine lean" tabindex="0" style="--sc:var(--l);--h:236px" data-title="Print-on-demand shops" data-desc="My designs, on things you could actually buy." data-worm="shopping time"><span>Print-on-demand</span></a>
+        <a class="spine" href="https://framerforms.s3.us-east-1.amazonaws.com/form-uploads/609d0411-973b-43f1-ad4b-0607dc84c9bd-report.pdf" target="_blank" rel="noopener" style="--sc:var(--b);--h:244px;--w:62px" data-title="Hackathons" data-desc="Most recently: 2nd prize at the Apart AlxBio Hackathon 2026 with Pandemic Watch." data-worm="2nd prize!"><span>Hackathons</span></a>
+        <a class="spine" href="travel.html" style="--sc:var(--m);--h:228px;--w:70px" data-title="Solo travel" data-desc="From Delhi to many places, and counting. Click to spin the globe." data-worm="take me with you!"><span>Solo travel</span></a>
+        <a class="spine" href="index.html#news" style="--sc:var(--p);--h:212px;--w:56px" data-title="Teaching" data-desc="Lectures on LLM agents at IIT Hyderabad, and guiding undergrads at IIT Mandi." data-worm="class is in session"><span>Teaching</span></a>
+        <a class="spine" href="index.html" style="--sc:#e8d9c3;--h:256px;--w:64px" data-title="Research (the main quest)" data-desc="The serious version of this website, with all the papers." data-worm="the main quest"><span>Research</span></a>
+      </div>
+      <div class="plank"></div>
+    </div>
+    <div class="slip" aria-live="polite"><b id="slipTitle">Pick a book</b><span id="slipDesc">Hover over (or tap) a spine to read the blurb.</span></div>
+  </section>
+
+  <!-- ================= LIBRARY CARD ================= -->
+  <section class="libcard" aria-labelledby="libh">
+    <h2 id="libh">Library card</h2>
+    <p class="sub">borrow me for a chat, about research, books, design or travel</p>
+    <table>
+      <thead><tr><th>where</th><th>find me</th></tr></thead>
+      <tbody>
+        <tr><td>email</td><td><a href="mailto:avni.mittal2002@gmail.com" data-worm="say hi!">avni.mittal2002@gmail.com</a></td></tr>
+        <tr><td>linkedin</td><td><a href="https://www.linkedin.com/in/avni-mittal-5a0b3b198/" target="_blank" rel="noopener">avni-mittal</a></td></tr>
+        <tr><td>github</td><td><a href="https://github.com/AvniMittal13" target="_blank" rel="noopener">AvniMittal13</a></td></tr>
+        <tr><td>scholar</td><td><a href="https://scholar.google.com/citations?user=itURCtMAAAAJ&hl=en" target="_blank" rel="noopener">google scholar</a></td></tr>
+        <tr><td>bookstagram</td><td><a href="https://www.instagram.com/thefaeblehoarder/" target="_blank" rel="noopener" data-worm="my home turf!">@thefaeblehoarder</a></td></tr>
+        <tr><td>book blogs</td><td><a href="https://avnisbookishparadise.wordpress.com/" target="_blank" rel="noopener">wordpress</a> · <a href="https://avnisbookishparadise.blogspot.com/" target="_blank" rel="noopener">blogspot</a></td></tr>
+      </tbody>
+    </table>
+    <span class="libstamp">always<br>happy to talk</span>
+  </section>
+</div>
+
+<footer>
+  <div class="hand">Avni Mittal · Delhi → wherever's next</div>
+  <div style="margin-top:6px"><a href="index.html">the serious version</a> · <a href="travel.html">the travel globe</a></div>
+</footer>
+
+<script src="fun.js"></script>
+<script>
+  // ---------- the flip-book ----------
+  (function () {
+    var bookEl = document.getElementById('book');
+    var src = Array.prototype.slice.call(document.getElementById('bookSource').children);
+    var prevBtn = document.getElementById('prevPage'), nextBtn = document.getElementById('nextPage');
+    var pageNum = document.getElementById('pageNum'), hint = document.getElementById('bookHint');
+    var mq = window.matchMedia('(max-width: 760px)');
+    var DUR = 900, STAGGER = 130;
+    var single, leaves = [], groups = [], k = 0, maxK = 0, boardL, boardR, settleT, timers = [];
+
+    function build(keepFace) {
+      timers.forEach(clearTimeout); timers = [];
+      single = mq.matches;
+      bookEl.innerHTML = '';
+      bookEl.className = 'book no-anim' + (single ? ' single' : '');
+      boardL = document.createElement('div'); boardL.className = 'board left';
+      boardR = document.createElement('div'); boardR.className = 'board right';
+      bookEl.appendChild(boardL); bookEl.appendChild(boardR);
+
+      groups = [];
+      if (single) src.forEach(function (s, i) { groups.push([i]); });
+      else for (var i = 0; i < src.length; i += 2) groups.push(src[i + 1] ? [i, i + 1] : [i]);
+
+      var tabCount = 0, tabTotal = src.filter(function (s) { return s.dataset.tab; }).length;
+      leaves = groups.map(function (g, li) {
+        var leaf = document.createElement('div');
+        leaf.className = 'leaf';
+        g.forEach(function (fi, side) {
+          var face = document.createElement('div');
+          face.className = 'face ' + (side === 0 ? 'front' : 'back');
+          face.appendChild(src[fi].cloneNode(true));
+          leaf.appendChild(face);
+        });
+        // annotation tab for chapter pages
+        var tabbed = g.filter(function (fi) { return src[fi].dataset.tab; });
+        if (tabbed.length) {
+          var t = document.createElement('span');
+          t.className = 'ltab';
+          t.style.setProperty('--tabc', src[tabbed[0]].dataset.tab);
+          var spacing = single ? Math.min(30, 300 / tabTotal) : 52;
+          t.style.setProperty('--tx', (single ? 70 : 40) + tabCount * spacing + 'px');
+          t.title = 'jump to ' + src[tabbed[0]].dataset.label;
+          t.dataset.face = tabbed[0] + 1;
+          tabCount++;
+          leaf.appendChild(t);
+        }
+        bookEl.appendChild(leaf);
+        return leaf;
+      });
+      maxK = single ? leaves.length - 1 : leaves.length;
+
+      // jump straight to the page we were on
+      k = keepFace ? kForFace(keepFace) : 0;
+      leaves.forEach(function (l, i) { l.classList.toggle('flipped', i < k); });
+      settle(); update();
+      void bookEl.offsetWidth;
+      bookEl.classList.remove('no-anim');
+    }
+
+    function kForFace(f) { return single ? f - 1 : Math.floor(f / 2); }
+
+    function settle() {
+      var L = leaves.length;
+      leaves.forEach(function (l, i) {
+        l.style.zIndex = l.classList.contains('flipped') ? i + 1 : 2 * L - i;
+        l.classList.toggle('top-r', i === k);
+        l.classList.toggle('top-l', i === k - 1);
+      });
+    }
+
+    function label(fi) { return src[fi] ? src[fi].dataset.label : ''; }
+    function update() {
+      var L = leaves.length;
+      if (!single) {
+        bookEl.classList.toggle('at-start', k === 0);
+        bookEl.classList.toggle('at-end', k === L);
+        boardL.classList.toggle('hide', k === 0);
+        boardR.classList.toggle('hide', k === L);
+      }
+      var txt;
+      if (single) txt = label(k);
+      else if (k === 0) txt = 'the cover';
+      else if (k === L) txt = 'the back cover';
+      else txt = label(2 * k);
+      pageNum.textContent = txt;
+      prevBtn.disabled = k === 0;
+      nextBtn.disabled = k === maxK;
+      if (k > 0) hint.textContent = single ? 'swipe or tap the edges to turn' : 'click a page, or use ← → to turn';
+    }
+
+    function go(target) {
+      target = Math.max(0, Math.min(maxK, target));
+      if (target === k) return;
+      timers.forEach(clearTimeout); timers = [];
+      var dir = target > k ? 1 : -1, steps = Math.abs(target - k), start = k;
+      for (var s = 0; s < steps; s++) (function (s) {
+        timers.push(setTimeout(function () {
+          var idx = dir > 0 ? start + s : start - 1 - s;
+          var leaf = leaves[idx];
+          leaf.classList.remove('top-r', 'top-l');
+          leaf.style.zIndex = 1000 + s;
+          leaf.classList.toggle('flipped', dir > 0);
+          k += dir;
+          update();
+          clearTimeout(settleT);
+          settleT = setTimeout(settle, DUR + 40);
+        }, s * STAGGER));
+      })(s);
+    }
+    function goFace(f) { go(kForFace(f)); }
+
+    prevBtn.addEventListener('click', function () { go(k - 1); });
+    nextBtn.addEventListener('click', function () { go(k + 1); });
+
+    bookEl.addEventListener('click', function (e) {
+      var jump = e.target.closest('[data-goto]');
+      if (jump) { e.preventDefault(); goFace(+jump.dataset.goto); return; }
+      var tab = e.target.closest('.ltab');
+      if (tab) { goFace(+tab.dataset.face); return; }
+      if (e.target.closest('a, button')) return;
+      var face = e.target.closest('.face');
+      if (!face) return;
+      if (single) {
+        var r = face.getBoundingClientRect();
+        go(e.clientX - r.left < r.width * 0.3 ? k - 1 : k + 1);
+      } else {
+        go(face.classList.contains('back') ? k - 1 : k + 1);
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.closest && e.target.closest('input, textarea')) return;
+      var r = bookEl.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      if (e.key === 'ArrowRight') { go(k + 1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { go(k - 1); e.preventDefault(); }
+    });
+
+    var tx = null;
+    bookEl.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+    bookEl.addEventListener('touchend', function (e) {
+      if (tx === null) return;
+      var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (Math.abs(dx) > 40) go(dx < 0 ? k + 1 : k - 1);
+    });
+
+    function currentFace() { return single ? k + 1 : (k === 0 ? 1 : 2 * k); }
+    mq.addEventListener('change', function () { build(currentFace()); });
+    // fun.html?page=4 opens the book at that page
+    var startPage = parseInt(new URLSearchParams(location.search).get('page'), 10);
+    build(startPage > 0 ? Math.min(startPage, src.length) : 0);
+  })();
+
+  // ---------- bookshelf blurb slip ----------
+  (function () {
+    var t = document.getElementById('slipTitle'), d = document.getElementById('slipDesc');
+    document.querySelectorAll('.spine').forEach(function (s) {
+      function show() { t.textContent = s.dataset.title; d.textContent = s.dataset.desc; }
+      s.addEventListener('mouseenter', show);
+      s.addEventListener('focus', show);
+    });
+  })();
+</script>
+</body>
+</html>
